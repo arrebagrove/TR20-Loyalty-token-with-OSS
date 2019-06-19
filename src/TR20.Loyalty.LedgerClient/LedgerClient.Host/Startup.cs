@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace TR20.Loyalty.TxIndexer.Host
+namespace TR20.Loyalty.LedgerClient.Host
 {
     public class Startup
     {
@@ -20,6 +20,7 @@ namespace TR20.Loyalty.TxIndexer.Host
         {
             Configuration = configuration;
         }
+
 
         public IConfiguration Configuration { get; }
 
@@ -31,7 +32,7 @@ namespace TR20.Loyalty.TxIndexer.Host
             services.AddSwaggerGen(c =>
             {
 
-                c.SwaggerDoc("v1", new Info { Title = "TR20 Loyalty Token Transaction Indexer Service", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "TR20 Loyalty Token Ledger Service", Version = "v1" });
             });
         }
 
@@ -41,7 +42,6 @@ namespace TR20.Loyalty.TxIndexer.Host
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
             }
             else
             {
@@ -52,7 +52,7 @@ namespace TR20.Loyalty.TxIndexer.Host
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TR20 Loyalty Token Transaction Indexer Service");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TR20 Loyalty Token Ledger Service");
             });
 
             app.UseHttpsRedirection();

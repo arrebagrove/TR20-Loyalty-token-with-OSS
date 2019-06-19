@@ -7,7 +7,7 @@ using TR20.Loyalty.OffChainRepository.Mongo.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
-namespace TxIndexer.Host.Controllers
+namespace TR20.Loyalty.TxIndexer.Host.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

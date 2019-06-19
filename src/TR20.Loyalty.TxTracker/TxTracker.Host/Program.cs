@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace TR20.Loyalty.TxIndexer.Host
+namespace TR20.Loyalty.TxTracker.Host
 {
     public class Program
     {

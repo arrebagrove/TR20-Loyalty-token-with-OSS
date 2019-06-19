@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TxIndexer.Lib\TxIndexer.Lib.csproj" />
+    <ProjectReference Include="..\TxTracker.Lib\TxTracker.Lib.csproj" />
   </ItemGroup>
 
 </Project>
