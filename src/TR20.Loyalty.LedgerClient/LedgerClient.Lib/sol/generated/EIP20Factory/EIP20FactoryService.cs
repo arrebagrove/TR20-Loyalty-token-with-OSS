@@ -10,9 +10,9 @@ using Nethereum.Contracts.CQS;
 using Nethereum.Contracts.ContractHandlers;
 using Nethereum.Contracts;
 using System.Threading;
-using TR20.Loyalty.LedgerClient.Contracts.EIP20Factory.ContractDefinition;
+using TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20Factory;
 
-namespace TR20.Loyalty.LedgerClient.Contracts.EIP20Factory
+namespace TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20Factory
 {
     public partial class EIP20FactoryService
     {
@@ -112,6 +112,20 @@ namespace TR20.Loyalty.LedgerClient.Contracts.EIP20Factory
         public Task<byte[]> EIP20ByteCodeQueryAsync(BlockParameter blockParameter = null)
         {
             return ContractHandler.QueryAsync<EIP20ByteCodeFunction, byte[]>(null, blockParameter);
+        }
+
+        public Task<bool> VerifyEIP20QueryAsync(VerifyEIP20Function verifyEIP20Function, BlockParameter blockParameter = null)
+        {
+            return ContractHandler.QueryAsync<VerifyEIP20Function, bool>(verifyEIP20Function, blockParameter);
+        }
+
+        
+        public Task<bool> VerifyEIP20QueryAsync(string tokenContract, BlockParameter blockParameter = null)
+        {
+            var verifyEIP20Function = new VerifyEIP20Function();
+                verifyEIP20Function.TokenContract = tokenContract;
+            
+            return ContractHandler.QueryAsync<VerifyEIP20Function, bool>(verifyEIP20Function, blockParameter);
         }
     }
 }

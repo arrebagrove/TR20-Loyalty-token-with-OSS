@@ -3,7 +3,7 @@ Implements EIP20 token standard: https://github.com/ethereum/EIPs/blob/master/EI
 .*/
 
 
-pragma solidity >=0.4.21 <0.6.0;
+pragma solidity ^0.4.21;
 
 import "./EIP20Interface.sol";
 
@@ -23,11 +23,11 @@ contract EIP20 is EIP20Interface {
     uint8 public decimals;                //How many decimals to show.
     string public symbol;                 //An identifier: eg SBX
 
-    constructor (
+    function EIP20(
         uint256 _initialAmount,
-        string memory _tokenName,
+        string _tokenName,
         uint8 _decimalUnits,
-        string memory _tokenSymbol
+        string _tokenSymbol
     ) public {
         balances[msg.sender] = _initialAmount;               // Give the creator all initial tokens
         totalSupply = _initialAmount;                        // Update total supply
@@ -37,8 +37,7 @@ contract EIP20 is EIP20Interface {
     }
 
     function transfer(address _to, uint256 _value) public returns (bool success) {
-        require(balances[msg.sender] >= _value, "your Balance should be enough to transfer");
-
+        require(balances[msg.sender] >= _value);
         balances[msg.sender] -= _value;
         balances[_to] += _value;
         emit Transfer(msg.sender, _to, _value); //solhint-disable-line indent, no-unused-vars
@@ -47,7 +46,7 @@ contract EIP20 is EIP20Interface {
 
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
         uint256 allowance = allowed[_from][msg.sender];
-        require(balances[_from] >= _value && allowance >= _value, "your Balance shoud be enought to trasfer or be allowed");
+        require(balances[_from] >= _value && allowance >= _value);
         balances[_to] += _value;
         balances[_from] -= _value;
         if (allowance < MAX_UINT256) {

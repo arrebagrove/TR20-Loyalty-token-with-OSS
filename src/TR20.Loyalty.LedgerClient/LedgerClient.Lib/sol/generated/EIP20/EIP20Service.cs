@@ -10,9 +10,9 @@ using Nethereum.Contracts.CQS;
 using Nethereum.Contracts.ContractHandlers;
 using Nethereum.Contracts;
 using System.Threading;
-using TR20.Loyalty.LedgerClient.Contracts.EIP20.ContractDefinition;
+using TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20;
 
-namespace TR20.Loyalty.LedgerClient.Contracts.EIP20
+namespace TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20
 {
     public partial class EIP20Service
     {
