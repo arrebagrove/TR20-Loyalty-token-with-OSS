@@ -6,11 +6,11 @@ using System.Text;
 
 namespace TR20.Loyalty.LedgerClient.Lib
 {
-    public class LedgerClientBase
+    public class ERC20Base
     {
         protected Web3 web3;
 
-        protected LedgerClientBase(string connectionString, string address)
+        protected ERC20Base(string connectionString, string address)
         {
             KeyVaultClient kvClient = new KeyVaultClient();
             var privateKey = kvClient.ReadSecret(address).GetAwaiter().GetResult().Value;

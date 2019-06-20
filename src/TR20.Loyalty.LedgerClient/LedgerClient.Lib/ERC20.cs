@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TR20.Loyalty.LedgerClient.Lib
 {
-    public class ERC20 : LedgerClientBase
+    public class ERC20 : ERC20Base
     {
         string tokenAddress = "";
 
@@ -34,6 +34,7 @@ namespace TR20.Loyalty.LedgerClient.Lib
             return await erc20Service.TransferRequestAndWaitForReceiptAsync(recepientAddress, amount);
         }
 
+      
         public async Task<TransactionReceipt> ApproveAsync(string spenderAddress, BigInteger amount)
         {
             var erc20Service = new Contracts.EIP20.EIP20Service(this.web3, this.tokenAddress);
@@ -63,5 +64,6 @@ namespace TR20.Loyalty.LedgerClient.Lib
         public string Name { get; set; }
         public string Symbol { get; set; }
         public BigInteger TotalSupplied { get; set; }
+        public string ContractAddress { get; set; }
     }
 }

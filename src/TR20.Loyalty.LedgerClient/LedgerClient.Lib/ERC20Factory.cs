@@ -25,21 +25,21 @@ namespace TR20.Loyalty.LedgerClient.Lib
                 new Contracts.EIP20Factory.EIP20FactoryDeployment());
         }
 
-        public async Task<TransactionReceipt> SetupTokenAsync(string contractAddress, BigInteger initialAmount, string name, byte decimals, string symbol)
+        public async Task<TransactionReceipt> SetupTokenAsync(string tokenFactoryContractAddress, BigInteger initialAmount, string name, byte decimals, string symbol)
         {
-            var erc20FactoryService = new Contracts.EIP20Factory.EIP20FactoryService(this.web3, contractAddress);
+            var erc20FactoryService = new Contracts.EIP20Factory.EIP20FactoryService(this.web3, tokenFactoryContractAddress);
             return await erc20FactoryService.CreateEIP20RequestAndWaitForReceiptAsync(initialAmount, name, decimals, symbol);
         }
 
-        public async Task<bool> CheckEIP20(string contractAddress, string tokenContractAddress)
+        public async Task<bool> CheckEIP20(string tokenFactoryContractAddress, string tokenContractAddress)
         {
-            var erc20FactoryService = new Contracts.EIP20Factory.EIP20FactoryService(this.web3, contractAddress);
+            var erc20FactoryService = new Contracts.EIP20Factory.EIP20FactoryService(this.web3, tokenFactoryContractAddress);
             return await erc20FactoryService.VerifyEIP20QueryAsync(tokenContractAddress);
         }
 
-        public async Task<bool> IsEIP20(string contractAddress, string tokenContractAddress)
+        public async Task<bool> IsEIP20(string tokenFactoryContractAddress, string tokenContractAddress)
         {
-            var erc20FactoryService = new Contracts.EIP20Factory.EIP20FactoryService(this.web3, contractAddress);
+            var erc20FactoryService = new Contracts.EIP20Factory.EIP20FactoryService(this.web3, tokenFactoryContractAddress);
             return await erc20FactoryService.IsEIP20QueryAsync(tokenContractAddress);
         }
     }
