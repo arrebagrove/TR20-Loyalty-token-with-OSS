@@ -54,7 +54,8 @@ namespace TR20.Loyalty.LedgerClient.Lib
             {
                 Name = await erc20Service.NameQueryAsync(),
                 Symbol = await erc20Service.SymbolQueryAsync(),
-                TotalSupplied = await erc20Service.TotalSupplyQueryAsync()
+                TotalSupplied = await erc20Service.TotalSupplyQueryAsync(),
+                ContractAddress = this.tokenAddress
             };
         }
     }

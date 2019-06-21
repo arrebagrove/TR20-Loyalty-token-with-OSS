@@ -57,8 +57,41 @@ namespace TR20.Loyalty.LedgerClient.Host.Controllers
         [Route("GetBalance")]
         public async Task<ActionResult<BigInteger>> GetBalance(string tokenContractAddress, string account)
         {
-            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, account);
+            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, this.APPAccount);
             return await erc20Service.GetBalanceAsync(account);
+        }
+
+        [HttpPost]
+        [Route("TransferFrom")]
+        public async Task<ActionResult<bool>> TransferFrom(string tokenContractAddress, string senderAddress, string recepientAddress, BigInteger amount)
+        {
+            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, this.APPAccount);
+            return await erc20Service.TransferFromAsync(senderAddress, recepientAddress, amount);
+        }
+
+        [HttpPost]
+        [Route("Transfer")]
+        public async Task<ActionResult<bool>> Transfer(string tokenContractAddress, string recepientAddress, BigInteger amount)
+        {
+            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, this.APPAccount);
+            return await erc20Service.TransferAsync(recepientAddress, amount);
+        }
+
+        [HttpPost]
+        [Route("Approve")]
+        public async Task<ActionResult<bool>> Approve(string tokenContractAddress, string account, string spenderAccress, BigInteger amount)
+        {
+            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, account);
+            return await erc20Service.ApproveAsync(spenderAccress, amount);
+        }
+
+
+        [HttpPost]
+        [Route("GetTokenInfo")]
+        public async Task<ActionResult<TokenInfo>> GetTokenInfo(string tokenContractAddress)
+        {
+            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, this.APPAccount);
+            return await erc20Service.GetTokenInfoAsync();
         }
     }
 }

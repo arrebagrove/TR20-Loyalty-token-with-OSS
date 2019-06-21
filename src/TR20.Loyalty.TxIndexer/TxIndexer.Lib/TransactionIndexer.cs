@@ -23,46 +23,46 @@ namespace TR20.Loyalty.TxIndexer.Library
         }
 
         //for Indexer
-        public async Task<bool> LogTransaction(ContractTransaction transactionInformation)
-        {
-            await LogTransaction(transactionInformation);
+        //public async Task<bool> LogTransaction(ContractTransaction transactionInformation)
+        //{
+        //    await LogTransaction(transactionInformation);
 
-            return true;
-        }
+        //    return true;
+        //}
 
         public async Task<bool> LogTransaction(ContractTransaction transactionInformation, string description = null)
         {
             //Marking previous tx as inactive
-            var previousTxs =
-                _transactionIndexRepository.FindAll(new GenericSpecification<ContractTransaction>(x => x.BusinessContractDTO.CitizenIdentifier == transactionInformation.BusinessContractDTO.CitizenIdentifier));
-            foreach (var item in previousTxs)
-            {
-                if (item.IsActiveTransaction)
-                {
-                    item.IsActiveTransaction = false;
-                    await _transactionIndexRepository.SaveAsync(item);
-                }
+            //var previousTxs =
+            //    _transactionIndexRepository.FindAll(new GenericSpecification<ContractTransaction>(x => x.BusinessContractDTO.CitizenIdentifier == transactionInformation.BusinessContractDTO.CitizenIdentifier));
+            //foreach (var item in previousTxs)
+            //{
+            //    if (item.IsActiveTransaction)
+            //    {
+            //        item.IsActiveTransaction = false;
+            //        await _transactionIndexRepository.SaveAsync(item);
+            //    }
 
-            }
+            //}
 
             if (!string.IsNullOrEmpty(description))
             {
                 transactionInformation.BusinessContractDTO.Description = description;
             }
 
-            transactionInformation.IsActiveTransaction = true;
+            //transactionInformation.IsActiveTransaction = true;
             await _transactionIndexRepository.SaveAsync(transactionInformation);
 
             return true;
         }
 
         //for Indexer
-        public async Task<bool> UpdateTransaction(ContractTransaction transactionInformation)
-        {
-            await _transactionIndexRepository.SaveAsync(transactionInformation);
+        //public async Task<bool> UpdateTransaction(ContractTransaction transactionInformation)
+        //{
+        //    await _transactionIndexRepository.SaveAsync(transactionInformation);
 
-            return true;
-        }
+        //    return true;
+        //}
 
         //public async Task<string> CreateProfile(string citizenName, string address, DateTime DateOfBirth, bool Citizenship, int FederalIncome, int StateIncome)
         //{

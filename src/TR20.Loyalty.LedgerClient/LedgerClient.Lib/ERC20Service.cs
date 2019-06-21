@@ -66,6 +66,8 @@ namespace TR20.Loyalty.LedgerClient.Lib
             }
         }
 
+        //User1 approve Application's transaction.
+        //User1 have to login to ledger and approve Application's tranfer
         public async Task<bool> ApproveAsync(string spenderAddress, BigInteger amount)
         {
             ERC20 erc20 = new ERC20(this.HttpRPCEndpoint, this.tokenContractAddress, this.account);

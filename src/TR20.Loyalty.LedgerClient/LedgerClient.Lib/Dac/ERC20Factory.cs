@@ -9,12 +9,6 @@ namespace TR20.Loyalty.LedgerClient.Lib
 {
     public class ERC20Factory : ERC20Base
     {
-        //Web3 web3;
-
-        //string appAddress = "0xFF1D19EBE9Da2D81Ce5480a2Dab1C1C5faA3e2dD";
-        //string connectionString = "http://127.0.0.1:8545";
-           //"https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt";
-
         public ERC20Factory(string connectionString, string address) : base(connectionString, address)
         {
         }

@@ -17,10 +17,10 @@ namespace TR20.Loyalty.OffChainRepository.Mongo
 
         public BusinessTransactionRepository(IMongoClient client)
         {
-            _database = client.GetDatabase("ContractTransaction");
+            _database = client.GetDatabase("TokenTransaction");
 
-            if (!BsonClassMap.IsClassMapRegistered(typeof(Profile)))
-                BsonClassMap.RegisterClassMap<Profile>();
+            if (!BsonClassMap.IsClassMapRegistered(typeof(ContractTransaction)))
+                BsonClassMap.RegisterClassMap<ContractTransaction>();
 
         }
 

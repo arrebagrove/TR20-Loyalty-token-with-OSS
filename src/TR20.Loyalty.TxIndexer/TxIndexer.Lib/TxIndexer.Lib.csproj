@@ -8,6 +8,7 @@
     <PackageReference Include="MongoDB.Driver" Version="2.8.1" />
     <PackageReference Include="MongoDB.Driver.Core" Version="2.8.1" />
     <PackageReference Include="Nethereum.Portable" Version="3.3.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
 
   <PropertyGroup>

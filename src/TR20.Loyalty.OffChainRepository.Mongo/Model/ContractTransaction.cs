@@ -12,47 +12,33 @@ namespace TR20.Loyalty.OffChainRepository.Mongo.Model
         {
         }
 
-        public ContractTransaction(Profile businessContract, TransactionReceipt contractDeployed)
-        {
-            InitObject(businessContract);
-            ContractID = Guid.NewGuid().ToString();
-
-            TransactionConfirmation = contractDeployed;
-            //Name = contractDeployed.;
-            BindingId = contractDeployed.ContractAddress;
-        }
-
-        private void InitObject(Profile businessContract)
+        public ContractTransaction(string transactionOwner, TokenTransfer businessContract, TransactionReceipt contractDeployed, string TokenName ="")
         {
             Id = Guid.NewGuid();
-            TransactionID = businessContract.TransactionID;
+            TransactionID = contractDeployed.TransactionHash;
+            TransactionTime = DateTime.UtcNow;
+
+            TransactionConfirmation = contractDeployed;
             BusinessContractDTO = businessContract;
-            TransactionTime = businessContract.TransactedTime;
-        }
-
-        public ContractTransaction(string bindingId, string name, Profile businessContract, TransactionReceipt transactionConfirmation)
-        {
-            InitObject(businessContract);
-
-            TransactionConfirmation = transactionConfirmation;
-            BindingId = transactionConfirmation.ContractAddress;
-            // Name = name;
+            TransactionOwner = transactionOwner;
+            Name = TokenName;
         }
 
         //Key for Mongo......
         public Guid Id { get; set; }
 
-        public bool IsActiveTransaction { get; set; }
-        //Should be one per each deployed Smart Contract
-        public string ContractID { get; set; }
+        //public bool IsActiveTransaction { get; set; }
         //Should be assigned per each transaction
         public string TransactionID { get; set; }
-        //Business DTO
-        public Profile BusinessContractDTO { get; set; }
-        public DateTimeOffset TransactionTime { get; set; }
+       
+        public DateTime TransactionTime { get; set; }
+
         public TransactionReceipt TransactionConfirmation { get; set; }
+        //Business DTO
+        public TokenTransfer BusinessContractDTO { get; set; }
+
         public string Name { get; set; }
-        public string BindingId { get; set; }
+        public string TransactionOwner { get; set; }
 
     }
 }
