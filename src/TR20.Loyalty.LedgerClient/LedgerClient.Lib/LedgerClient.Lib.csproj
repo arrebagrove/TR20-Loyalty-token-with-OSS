@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.Azure.KeyVault.Extensions" Version="3.0.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="2.2.0" />
     <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="5.1.0" />
-    <PackageReference Include="Nethereum.Portable" Version="3.3.1" />
+    <PackageReference Include="Nethereum.Web3" Version="3.3.0" />
     <PackageReference Include="Portable.BouncyCastle" Version="1.8.5" />
   </ItemGroup>
 

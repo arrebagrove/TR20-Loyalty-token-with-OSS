@@ -9,7 +9,6 @@ namespace TR20.Loyalty.LedgerClient.Lib
     public class ERC20FactoryService
     {
 
-        private ERC20Factory erc20Factory;
         private string HttpRPCEndpoint;
         private string account;
         private string tokenContractAddress;
@@ -43,7 +42,7 @@ namespace TR20.Loyalty.LedgerClient.Lib
             }
         }
 
-        public async Task<bool> IsERP20Async(string tokenFactoryContractAddress, 
+        public async Task<bool> IsERP20Async(string tokenFactoryContractAddress,
             string tokenContractAddress)
         {
             ERC20Factory erc20Factory = new ERC20Factory(this.HttpRPCEndpoint,

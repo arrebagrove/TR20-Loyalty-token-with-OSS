@@ -55,7 +55,7 @@ namespace TR20.Loyalty.LedgerClient.Host
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "TR20 Loyalty Token Ledger Service");
             });
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

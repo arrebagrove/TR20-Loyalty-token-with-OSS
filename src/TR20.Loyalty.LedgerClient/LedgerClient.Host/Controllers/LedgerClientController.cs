@@ -14,8 +14,6 @@ namespace TR20.Loyalty.LedgerClient.Host.Controllers
     public class LedgerClientController : ControllerBase
     {
         private IConfiguration _configuration;
-        private ERC20FactoryService erc20FactoryService;
-        private ERC20Service erc20Service;
 
         private string HTTPRPCEndpoint;
         private string APPAccount;

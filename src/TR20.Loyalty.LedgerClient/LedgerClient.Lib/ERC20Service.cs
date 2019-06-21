@@ -8,7 +8,6 @@ namespace TR20.Loyalty.LedgerClient.Lib
 {
     public class ERC20Service
     {
-        private ERC20 erc20;
         private string HttpRPCEndpoint;
         private string account;
         private string tokenContractAddress;

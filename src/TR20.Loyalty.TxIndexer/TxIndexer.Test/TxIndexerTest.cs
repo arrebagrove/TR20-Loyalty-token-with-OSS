@@ -12,7 +12,7 @@ namespace TR20.Loyalty.TxIndexer.Test
         static string mongoConnection = "mongodb://mongoloyalty:tlayMnZYEGwrhduOH2MYlDnaUSZ7HDdajN8GgvdQausiPxRrahHWrLVMhVwMRvaIiy74aa5T43KRR2VxubEBGw==@mongoloyalty.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
 
         [TestMethod]
-        public void TestMethod1()
+        public void LogTransaction()
         {
             var businessObject = new ContractTransaction(
                 "0xFF1D19EBE9Da2D81Ce5480a2Dab1C1C5faA3e2dD",
