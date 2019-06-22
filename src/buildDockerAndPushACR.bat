@@ -1,3 +1,9 @@
+REM BUILDING CODE AND CONTAINERIZE / PUSH TO ACR
+
+cd TR20.Loyalty.ServiceProxy\
+dotnet build
+cd ..
+
 cd TR20.Loyalty.LedgerClient\LedgerClient.Host
 dotnet build
 cd ..\..
@@ -10,9 +16,9 @@ cd TR20.Loyalty.TxTracker\TxTracker.Host
 dotnet build
 cd ..\..
 
-docker build -f Dockerfile_ledgerclient --rm -t tr20loyalty/ledgerclient:latest .
-docker build -f Dockerfile_indexer --rm -t tr20loyalty/txindexer:latest .
-docker build -f Dockerfile_tracker --rm -t tr20loyalty/txtracker:latest .
+docker build -f Dockerfile_ledgerclient --rm --no-cache -t tr20loyalty/ledgerclient:latest .
+docker build -f Dockerfile_indexer --rm --no-cache -t tr20loyalty/txindexer:latest .
+docker build -f Dockerfile_tracker --no-cache --rm -t tr20loyalty/txtracker:latest .
 
 
 docker tag tr20loyalty/ledgerclient:latest tr20loyalty.azurecr.io/tr20loyalty/ledgerclient:latest

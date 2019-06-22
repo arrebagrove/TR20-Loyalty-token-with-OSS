@@ -4,7 +4,7 @@ WORKDIR /app
 # Copy csproj and restore as distinct layers
 COPY /TR20.Loyalty.TxIndexer/ .
 COPY /TR20.Loyalty.OffChainRepository.Mongo /TR20.Loyalty.OffChainRepository.Mongo/
-
+COPY /TR20.Loyalty.ServiceProxy /TR20.Loyalty.ServiceProxy/
 WORKDIR /app/TxIndexer.Host/
 RUN dotnet restore
 

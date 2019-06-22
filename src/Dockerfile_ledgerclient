@@ -4,10 +4,14 @@ WORKDIR /app
 # Copy csproj and restore as distinct layers
 #COPY ./ ./
 COPY /TR20.Loyalty.LedgerClient/ .
+COPY /TR20.Loyalty.ServiceProxy /TR20.Loyalty.ServiceProxy/
+COPY /TR20.Loyalty.OffChainRepository.Mongo /TR20.Loyalty.OffChainRepository.Mongo/
 RUN dotnet restore
 
 # Copy everything else and build
 COPY /TR20.Loyalty.LedgerClient/ .
+COPY /TR20.Loyalty.ServiceProxy/ .
+
 WORKDIR /app/LedgerClient.Host/
 RUN dotnet publish -c Release -o out
 

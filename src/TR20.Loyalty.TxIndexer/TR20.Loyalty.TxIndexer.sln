@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TxIndexer.Test", "TxIndexer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TR20.Loyalty.OffChainRepository.Mongo", "..\TR20.Loyalty.OffChainRepository.Mongo\TR20.Loyalty.OffChainRepository.Mongo.csproj", "{1838AC76-E00C-46CB-BF38-752D01C0DC0F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TR20.Loyalty.ServiceProxy", "..\TR20.Loyalty.ServiceProxy\TR20.Loyalty.ServiceProxy.csproj", "{A624AF91-9A80-4F83-B887-42A08B29F36D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1838AC76-E00C-46CB-BF38-752D01C0DC0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1838AC76-E00C-46CB-BF38-752D01C0DC0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1838AC76-E00C-46CB-BF38-752D01C0DC0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A624AF91-9A80-4F83-B887-42A08B29F36D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A624AF91-9A80-4F83-B887-42A08B29F36D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A624AF91-9A80-4F83-B887-42A08B29F36D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A624AF91-9A80-4F83-B887-42A08B29F36D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

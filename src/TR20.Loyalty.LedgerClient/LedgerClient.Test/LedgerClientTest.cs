@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using TR20.Loyalty.LedgerClient.Proxy;
 
 namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
 {
@@ -17,10 +18,16 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         static string user1Account = "0x1F9B9484188b42C01f4aaC308D4848659901F17b";
         static string user2Account = "0x0f5DDacC06A44163badc5eD4f09dE0d3eFfC2716";
 
+
+        static TR20.Loyalty.LedgerClient.Proxy.LedgerServiceProxy ledgerServiceProxy;
         [TestInitialize]
         public void init()
         {
             Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
+            LedgerClientTest.ledgerServiceProxy = new LedgerServiceProxy(
+                "http://localhost:8080",
+                new System.Net.Http.HttpClient()
+                );
         }
 
         [TestMethod]
@@ -58,6 +65,22 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         //    Trace.WriteLine(txReciept.Status);
         //}
 
+        //[TestMethod]
+        //public void SetupToken_WebAPI()
+        //{
+        //    var result = LedgerClientTest.ledgerServiceProxy.SetupTokenAsync(
+        //        LedgerClientTest.tokenFactoryContractAddress,
+        //        "10000000",
+        //        $"test token{DateTime.Now.Ticks}",
+        //        8,
+        //        $"foo{DateTime.Now.Ticks}").GetAwaiter().GetResult();
+
+        //    Assert.IsNotNull(result);
+        //}
+
+
+
+
         [TestMethod]
         public void CheckEIP20()
         {
@@ -81,6 +104,13 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         }
 
         [TestMethod]
+        public void IsEIP20_WebAPI()
+        {
+            var result = LedgerClientTest.ledgerServiceProxy.IsERP20Async(LedgerClientTest.tokenFactoryContractAddress, LedgerClientTest.tokenContractAddress).GetAwaiter().GetResult();
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
         public void GetTokenInfo()
         {
             ERC20 eRC20 = new ERC20(
@@ -90,6 +120,14 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
 
             var result = eRC20.GetTokenInfoAsync().GetAwaiter().GetResult();
 
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void GetTokenInfo_WebAPI()
+        {
+
+            var result = LedgerClientTest.ledgerServiceProxy.GetTokenInfoAsync(LedgerClientTest.tokenContractAddress).GetAwaiter().GetResult();
             Assert.IsNotNull(result);
         }
 
@@ -107,6 +145,14 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         }
 
         [TestMethod]
+        public void GetBalance_WebAPI()
+        {
+
+            var result = LedgerClientTest.ledgerServiceProxy.GetBalanceAsync(LedgerClientTest.tokenContractAddress, LedgerClientTest.applicationAccount).GetAwaiter().GetResult();
+            Assert.IsTrue(Decimal.Parse(result) > 0);
+        }
+
+        [TestMethod]
         public void Transfer()
         {
             ERC20 eRC20 = new ERC20(
@@ -118,6 +164,26 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
             var balance = eRC20.GetBalanceAsync(user1Account).GetAwaiter().GetResult();
 
             Assert.IsTrue(balance > 0);
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void Transfer_WebAPI()
+        {
+            //ERC20 eRC20 = new ERC20(
+            //          "https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
+            //          LedgerClientTest.tokenContractAddress,
+            //           applicationAccount);
+
+            //var result = eRC20.TransferAsync(user1Account, 1).GetAwaiter().GetResult();
+            //var balance = eRC20.GetBalanceAsync(user1Account).GetAwaiter().GetResult();
+
+            //Assert.IsTrue(balance > 0);
+            //Assert.IsNotNull(result);
+            var result = LedgerClientTest.ledgerServiceProxy.TransferAsync(LedgerClientTest.tokenContractAddress, LedgerClientTest.user1Account, "1").GetAwaiter().GetResult();
+            var balance = LedgerClientTest.ledgerServiceProxy.GetBalanceAsync(LedgerClientTest.tokenContractAddress, LedgerClientTest.user1Account).GetAwaiter().GetResult();
+
+            Assert.IsTrue(Decimal.Parse(balance) > 0);
             Assert.IsNotNull(result);
         }
 

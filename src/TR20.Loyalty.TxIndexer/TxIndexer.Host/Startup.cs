@@ -30,7 +30,6 @@ namespace TR20.Loyalty.TxIndexer.Host
 
             services.AddSwaggerGen(c =>
             {
-
                 c.SwaggerDoc("v1", new Info { Title = "TR20 Loyalty Token Transaction Indexer Service", Version = "v1" });
             });
         }
