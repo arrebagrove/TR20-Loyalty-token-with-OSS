@@ -24,7 +24,7 @@ namespace TR20.Loyalty.TxIndexer.Test
                     TokenAmount = "10",
                     Description = "Test Transaction Logging"
                 },
-                new Nethereum.RPC.Eth.DTOs.TransactionReceipt()
+                new TransactionReceipt()
                 {
                     TransactionHash = "0xc35a346262f98712ef7216574c10a4f51fb7e7f3322a5b18ffa7fee32a675bb3",
                     BlockHash = "0x8241bc59218ce97022d0210c4ba2f9edd0479c8fe8969808fcfb315910abcf76"

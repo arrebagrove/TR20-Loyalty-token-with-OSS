@@ -155,7 +155,7 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         [TestMethod]
         public void Transfer()
         {
-            ERC20 eRC20 = new ERC20(
+            ERC20Service eRC20 = new ERC20Service(
                       "https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
                       LedgerClientTest.tokenContractAddress,
                        applicationAccount);

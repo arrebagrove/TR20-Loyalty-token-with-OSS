@@ -33,9 +33,9 @@ namespace TR20.Loyalty.TxTracker.Host.Controllers
 
         [HttpPost()]
         [Route("GetTransactionHistory")]
-        public IEnumerable<ContractTransaction> GetTransactionInformationByAccount(string account)
+        public IEnumerable<ContractTransaction> GetTransactionInformationByAccount(string tokenContractAddress, string account)
         {
-            var txObjects = _trackingservice.GetTransactionHistory(account);
+            var txObjects = _trackingservice.GetTransactionHistory(tokenContractAddress, account);
             return txObjects;
         }
 

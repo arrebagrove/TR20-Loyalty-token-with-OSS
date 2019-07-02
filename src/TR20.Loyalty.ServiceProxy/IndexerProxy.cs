@@ -237,28 +237,28 @@ namespace TR20.Loyalty.TxIndexer.Proxy
         public string TransactionHash { get; set; }
     
         [Newtonsoft.Json.JsonProperty("transactionIndex", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public HexBigInteger TransactionIndex { get; set; }
+        public string TransactionIndex { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("blockNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string BlockNumber { get; set; }
     
         [Newtonsoft.Json.JsonProperty("blockHash", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string BlockHash { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("blockNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public HexBigInteger BlockNumber { get; set; }
-    
         [Newtonsoft.Json.JsonProperty("cumulativeGasUsed", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public HexBigInteger CumulativeGasUsed { get; set; }
+        public string CumulativeGasUsed { get; set; }
     
         [Newtonsoft.Json.JsonProperty("gasUsed", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public HexBigInteger GasUsed { get; set; }
+        public string GasUsed { get; set; }
     
         [Newtonsoft.Json.JsonProperty("contractAddress", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ContractAddress { get; set; }
     
         [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public HexBigInteger Status { get; set; }
+        public string Status { get; set; }
     
         [Newtonsoft.Json.JsonProperty("logs", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public object Logs { get; set; }
+        public string Logs { get; set; }
     
     
     }
@@ -280,18 +280,6 @@ namespace TR20.Loyalty.TxIndexer.Proxy
     
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.20.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class HexBigInteger 
-    {
-        [Newtonsoft.Json.JsonProperty("hexValue", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string HexValue { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("value", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Value { get; set; }
     
     
     }

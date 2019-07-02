@@ -101,9 +101,9 @@ namespace TR20.Loyalty.APIService.Controllers
 
         [HttpPost()]
         [Route("GetTransactionHistory")]
-        public Task<ICollection<TxTracker.Proxy.ContractTransaction>> GetTransactionInformationByAccount(string account)
+        public Task<ICollection<TxTracker.Proxy.ContractTransaction>> GetTransactionInformationByAccount(string tokenContractAddress, string account)
         {
-            return  _proxyFactory.CreateTrackerProxy().GetTransactionInformationByAccountAsync(account);
+            return  _proxyFactory.CreateTrackerProxy().GetTransactionInformationByAccountAsync(tokenContractAddress, account);
         }
     }
 }

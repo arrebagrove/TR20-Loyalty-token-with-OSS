@@ -13,7 +13,7 @@ namespace TxTracker.Test
         public void GetTransactionHistory()
         {
             var txTracker = new TransactionTracker(mongoConnection);
-            var results = txTracker.GetTransactionHistory("0xFF1D19EBE9Da2D81Ce5480a2Dab1C1C5faA3e2dD");
+            var results = txTracker.GetTransactionHistory("0xac8bf74f1b51b923507bea339c74b3b18482e3b0","0x1F9B9484188b42C01f4aaC308D4848659901F17b");
 
             Assert.IsTrue(results.GetEnumerator().MoveNext());
 

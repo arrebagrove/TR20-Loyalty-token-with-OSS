@@ -46,18 +46,22 @@ namespace TR20.Loyalty.TxTracker.Proxy
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ContractTransaction>> GetTransactionInformationByAccountAsync(string account)
+        public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ContractTransaction>> GetTransactionInformationByAccountAsync(string tokenContractAddress, string account)
         {
-            return GetTransactionInformationByAccountAsync(account, System.Threading.CancellationToken.None);
+            return GetTransactionInformationByAccountAsync(tokenContractAddress, account, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ContractTransaction>> GetTransactionInformationByAccountAsync(string account, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ContractTransaction>> GetTransactionInformationByAccountAsync(string tokenContractAddress, string account, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/TransactionTrackerContoller/GetTransactionHistory?");
+            if (tokenContractAddress != null) 
+            {
+                urlBuilder_.Append("tokenContractAddress=").Append(System.Uri.EscapeDataString(ConvertToString(tokenContractAddress, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
             if (account != null) 
             {
                 urlBuilder_.Append("account=").Append(System.Uri.EscapeDataString(ConvertToString(account, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -239,28 +243,28 @@ namespace TR20.Loyalty.TxTracker.Proxy
         public string TransactionHash { get; set; }
     
         [Newtonsoft.Json.JsonProperty("transactionIndex", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public HexBigInteger TransactionIndex { get; set; }
+        public string TransactionIndex { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("blockNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string BlockNumber { get; set; }
     
         [Newtonsoft.Json.JsonProperty("blockHash", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string BlockHash { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("blockNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public HexBigInteger BlockNumber { get; set; }
-    
         [Newtonsoft.Json.JsonProperty("cumulativeGasUsed", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public HexBigInteger CumulativeGasUsed { get; set; }
+        public string CumulativeGasUsed { get; set; }
     
         [Newtonsoft.Json.JsonProperty("gasUsed", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public HexBigInteger GasUsed { get; set; }
+        public string GasUsed { get; set; }
     
         [Newtonsoft.Json.JsonProperty("contractAddress", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ContractAddress { get; set; }
     
         [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public HexBigInteger Status { get; set; }
+        public string Status { get; set; }
     
         [Newtonsoft.Json.JsonProperty("logs", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public object Logs { get; set; }
+        public string Logs { get; set; }
     
     
     }
@@ -282,18 +286,6 @@ namespace TR20.Loyalty.TxTracker.Proxy
     
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
-    
-    
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.20.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class HexBigInteger 
-    {
-        [Newtonsoft.Json.JsonProperty("hexValue", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string HexValue { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("value", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Value { get; set; }
     
     
     }

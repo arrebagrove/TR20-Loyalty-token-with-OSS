@@ -7,6 +7,7 @@ using TR20.Loyalty.OffChainRepository.Mongo.ModelBase;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
+using Nethereum.RPC.Eth.DTOs;
 
 namespace TR20.Loyalty.OffChainRepository.Mongo
 {
@@ -21,7 +22,6 @@ namespace TR20.Loyalty.OffChainRepository.Mongo
 
             if (!BsonClassMap.IsClassMapRegistered(typeof(ContractTransaction)))
                 BsonClassMap.RegisterClassMap<ContractTransaction>();
-
         }
 
         public TEntity Get(TIdentifier id)

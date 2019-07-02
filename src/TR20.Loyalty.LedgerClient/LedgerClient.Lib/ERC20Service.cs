@@ -55,7 +55,18 @@ namespace TR20.Loyalty.LedgerClient.Lib
                         TokenAmount = amount.ToString(),
                         TokenAddress = this.tokenContractAddress
                     },
-                    txReceipt);
+                    new OffChain.TransactionReceipt()
+                       {
+                           BlockHash = txReceipt.BlockHash,
+                           BlockNumber = txReceipt.BlockNumber.HexValue,
+                           ContractAddress = txReceipt.ContractAddress,
+                           CumulativeGasUsed = txReceipt.CumulativeGasUsed.HexValue,
+                           GasUsed = txReceipt.GasUsed.HexValue,
+                           Logs = txReceipt.Logs.ToString(),
+                           Status = txReceipt.Status.HexValue,
+                           TransactionHash = txReceipt.TransactionHash,
+                           TransactionIndex = txReceipt.TransactionIndex.HexValue
+                       });
 
 
                 var _transactionContext = new TR20.Loyalty.TxIndexer.Proxy.ContractTransaction()
@@ -68,34 +79,13 @@ namespace TR20.Loyalty.LedgerClient.Lib
                     TransactionConfirmation = new TR20.Loyalty.TxIndexer.Proxy.TransactionReceipt()
                     {
                         BlockHash = transactionContext.TransactionConfirmation.BlockHash,
-                        BlockNumber = new HexBigInteger()
-                        {
-                            HexValue = transactionContext.TransactionConfirmation.BlockNumber.HexValue,
-                            Value = transactionContext.TransactionConfirmation.BlockNumber.Value.ToString()
-                        },
+                        BlockNumber = transactionContext.TransactionConfirmation.BlockNumber,
                         ContractAddress = transactionContext.TransactionConfirmation.ContractAddress,
-                        CumulativeGasUsed = new HexBigInteger()
-                        {
-                            HexValue = transactionContext.TransactionConfirmation.CumulativeGasUsed.HexValue,
-                            Value = transactionContext.TransactionConfirmation.CumulativeGasUsed.Value.ToString()
-                        },
-                        GasUsed = new HexBigInteger()
-                        {
-                            HexValue = transactionContext.TransactionConfirmation.GasUsed.HexValue,
-                            Value = transactionContext.TransactionConfirmation.GasUsed.Value.ToString()
-                        },
+                        CumulativeGasUsed = transactionContext.TransactionConfirmation.CumulativeGasUsed,
+                        GasUsed = transactionContext.TransactionConfirmation.GasUsed,
                         Logs = transactionContext.TransactionConfirmation.Logs,
-                        Status = new HexBigInteger()
-                        {
-                            HexValue = transactionContext.TransactionConfirmation.Status.HexValue,
-                            Value = transactionContext.TransactionConfirmation.Status.Value.ToString()
-                        },
                         TransactionHash = transactionContext.TransactionConfirmation.TransactionHash,
-                        TransactionIndex = new HexBigInteger()
-                        {
-                            HexValue = transactionContext.TransactionConfirmation.TransactionIndex.HexValue,
-                            Value = transactionContext.TransactionConfirmation.TransactionIndex.Value.ToString()
-                        }
+                        TransactionIndex = transactionContext.TransactionConfirmation.TransactionIndex
                     },
                     BusinessContractDTO = new TokenTransfer()
                     {
@@ -134,7 +124,19 @@ namespace TR20.Loyalty.LedgerClient.Lib
                          TokenAmount = amount.ToString(),
                          TokenAddress = this.tokenContractAddress
                      },
-                     txReceipt);
+                        new OffChain.TransactionReceipt()
+                        {
+                            BlockHash = txReceipt.BlockHash,
+                            BlockNumber = txReceipt.BlockNumber.HexValue,
+                            ContractAddress = txReceipt.ContractAddress,
+                            CumulativeGasUsed = txReceipt.CumulativeGasUsed.HexValue,
+                            GasUsed = txReceipt.GasUsed.HexValue,
+                            Logs = txReceipt.Logs.ToString(),
+                            Status = txReceipt.Status.HexValue,
+                            TransactionHash = txReceipt.TransactionHash,
+                            TransactionIndex = txReceipt.TransactionIndex.HexValue
+                        }
+                         );
 
                 var _transactionContext = new TR20.Loyalty.TxIndexer.Proxy.ContractTransaction()
                 {
@@ -146,34 +148,13 @@ namespace TR20.Loyalty.LedgerClient.Lib
                     TransactionConfirmation = new TR20.Loyalty.TxIndexer.Proxy.TransactionReceipt()
                     {
                         BlockHash = transactionContext.TransactionConfirmation.BlockHash,
-                        BlockNumber = new HexBigInteger()
-                        {
-                            HexValue = transactionContext.TransactionConfirmation.BlockNumber.HexValue,
-                            Value = transactionContext.TransactionConfirmation.BlockNumber.Value.ToString()
-                        },
+                        BlockNumber = transactionContext.TransactionConfirmation.BlockNumber,
                         ContractAddress = transactionContext.TransactionConfirmation.ContractAddress,
-                        CumulativeGasUsed = new HexBigInteger()
-                        {
-                            HexValue = transactionContext.TransactionConfirmation.CumulativeGasUsed.HexValue,
-                            Value = transactionContext.TransactionConfirmation.CumulativeGasUsed.Value.ToString()
-                        },
-                        GasUsed = new HexBigInteger()
-                        {
-                            HexValue = transactionContext.TransactionConfirmation.GasUsed.HexValue,
-                            Value = transactionContext.TransactionConfirmation.GasUsed.Value.ToString()
-                        },
+                        CumulativeGasUsed = transactionContext.TransactionConfirmation.CumulativeGasUsed,
+                        GasUsed = transactionContext.TransactionConfirmation.GasUsed,
                         Logs = transactionContext.TransactionConfirmation.Logs,
-                        Status = new HexBigInteger()
-                        {
-                            HexValue = transactionContext.TransactionConfirmation.Status.HexValue,
-                            Value = transactionContext.TransactionConfirmation.Status.Value.ToString()
-                        },
                         TransactionHash = transactionContext.TransactionConfirmation.TransactionHash,
-                        TransactionIndex = new HexBigInteger()
-                        {
-                            HexValue = transactionContext.TransactionConfirmation.TransactionIndex.HexValue,
-                            Value = transactionContext.TransactionConfirmation.TransactionIndex.Value.ToString()
-                        }
+                        TransactionIndex = transactionContext.TransactionConfirmation.TransactionIndex
                     },
                     BusinessContractDTO = new TokenTransfer()
                     {
@@ -184,6 +165,7 @@ namespace TR20.Loyalty.LedgerClient.Lib
                         TokenAddress = transactionContext.BusinessContractDTO.TokenAddress
                     }
                 };
+
                 await indexerProxy.LogTransactionAsync(_transactionContext, transactionContext.BusinessContractDTO.Description);
 
                 return true;

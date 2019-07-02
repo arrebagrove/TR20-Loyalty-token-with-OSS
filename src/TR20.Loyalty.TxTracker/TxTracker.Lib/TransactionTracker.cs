@@ -19,11 +19,11 @@ namespace TR20.Loyalty.TxTracker.Library
 
         }
 
-        public IEnumerable<ContractTransaction> GetTransactionHistory(string account)
+        public IEnumerable<ContractTransaction> GetTransactionHistory(string tokenContractAddress, string account)
         {
-            var result = _transactionIndexRepository.FindAll(new GenericSpecification<ContractTransaction>(x => 
-                                                                                                            (x.BusinessContractDTO.FromAccount == account) ||
-                                                                                                            (x.BusinessContractDTO.ToAccount == account)));
+            var result = _transactionIndexRepository.FindAll(new GenericSpecification<ContractTransaction>(x => x.BusinessContractDTO.TokenAddress == tokenContractAddress &&
+                                                                                                            ((x.BusinessContractDTO.FromAccount == account) ||
+                                                                                                            (x.BusinessContractDTO.ToAccount == account))));
             return result;
         }
 
