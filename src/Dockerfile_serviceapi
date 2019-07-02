@@ -1,0 +1,22 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env
+WORKDIR /app
+
+# Copy csproj and restore as distinct layers
+COPY /TR20.Loyalty.APIService/ .
+COPY /TR20.Loyalty.ServiceProxy /TR20.Loyalty.ServiceProxy/ 
+WORKDIR /app
+RUN dotnet restore
+
+# Copy everything else and build
+COPY /TR20.Loyalty.APIService/ .
+COPY /TR20.Loyalty.ServiceProxy /TR20.Loyalty.ServiceProxy/
+
+#WORKDIR /app
+RUN dotnet publish -c Release -o out
+
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
+WORKDIR /app
+
+COPY --from=build-env /app/out ./
+ENTRYPOINT ["dotnet", "TR20.Loyalty.APIService.dll"]

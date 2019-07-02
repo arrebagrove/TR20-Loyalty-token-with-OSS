@@ -1,0 +1,164 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ledgerserviceapi
+  labels:
+    run: ready20
+    app: ledgerserviceapi
+spec:
+  selector:
+    app: ledgerserviceapi
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ledgerserviceloadbalancer
+  labels:
+    run: ready20
+    app: ledgerserviceapi
+spec:
+  selector:
+    app: ledgerserviceapi
+  ports:
+    - name: ledgerserviceloadbalancer
+      port: 80
+      targetPort: 80
+      protocol: TCP
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ledgerapi
+  labels:
+    run: ready20
+    app: ledgerapi
+spec:
+  selector:
+    app: ledgerapi
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80    
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: txindexer
+  labels:
+    run: ready20
+    app: txindexer
+spec:
+  selector:
+    app: txindexer
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80    
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: txtracker
+  labels:
+    run: ready20
+    app: txindexer
+spec:
+  selector:
+    app: txtracker
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80    
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: ledgerserviceapi
+spec:
+  replicas: 3
+  selector:
+    app: ledgerserviceapi
+  template:
+    metadata:
+      name: ledgerserviceapi
+      labels:
+        app: ledgerserviceapi
+        run: ready20
+    spec:
+      containers:
+        - name: ledgerserviceapi
+          image: tr20loyalty.azurecr.io/tr20loyalty/serviceapi:latest
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: ledgerapi
+spec:
+  replicas: 3
+  selector:
+    app: ledgerapi
+  template:
+    metadata:
+      name: ledgerapi
+      labels:
+        app: ledgerapi
+        run: ready20
+    spec:
+      containers:
+        - name: ledgerapi
+          image: tr20loyalty.azurecr.io/tr20loyalty/ledgerclient:latest
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: txindexer
+spec:
+  replicas: 3
+  selector:
+    app: txindexer
+  template:
+    metadata:
+      name: txindexer
+      labels:
+        app: txindexer
+        run: ready20
+    spec:
+      containers:
+        - name: txindexer
+          image: tr20loyalty.azurecr.io/tr20loyalty/txindexer:latest
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: txtracker
+spec:
+  replicas: 3
+  selector:
+    app: txtracker
+  template:
+    metadata:
+      name: txtracker
+      labels:
+        app: txtracker
+        run: ready20
+    spec:
+      containers:
+        - name: txtracker
+          image: tr20loyalty.azurecr.io/tr20loyalty/txtracker:latest
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always

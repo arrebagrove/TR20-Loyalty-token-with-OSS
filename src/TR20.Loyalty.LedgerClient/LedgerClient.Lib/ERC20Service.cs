@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace TR20.Loyalty.LedgerClient.Lib
 {
-     public class ERC20Service
+    public class ERC20Service
     {
         private string HttpRPCEndpoint;
         private string account;
@@ -23,7 +23,7 @@ namespace TR20.Loyalty.LedgerClient.Lib
             this.tokenContractAddress = tokenContractAddress;
             this.account = account;
 
-            indexerProxy = new IndexerServiceProxy("http://localhost:8081/",
+            indexerProxy = new IndexerServiceProxy("http://txindexer/",
                 new System.Net.Http.HttpClient());
         }
 

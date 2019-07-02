@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
+using TR20.Loyalty;
 
 namespace TR20.Loyalty.APIService
 {
@@ -26,6 +28,12 @@ namespace TR20.Loyalty.APIService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSwaggerGen(c =>
+            {
+
+                c.SwaggerDoc("v1", new Info { Title = "TR20 Loyalty Token Ledger API Service", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,7 +49,13 @@ namespace TR20.Loyalty.APIService
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TR20 Loyalty Token Ledger API Service");
+            });
+
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
