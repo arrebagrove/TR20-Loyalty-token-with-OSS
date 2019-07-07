@@ -42,7 +42,7 @@ namespace TR20.Loyalty.APIService.Controllers
 
         [HttpPost]
         [Route("CreateERC20Token")]
-        public async Task<ActionResult<LedgerClient.Proxy.TokenInfo>> CreateERC20Token(string tokenFactoryContractAddress, string TotalAmountToken,
+        public async Task<ActionResult<LedgerClient.Proxy.TokenInfo>> CreateERC20Token(string tokenFactoryContractAddress, double TotalAmountToken,
                                                         string Name,
                                                         int Decimal,
                                                         string Symbol)
@@ -73,23 +73,23 @@ namespace TR20.Loyalty.APIService.Controllers
 
         [HttpPost]
         [Route("TransferFrom")]
-        public async Task<ActionResult<bool>> TransferFrom(string tokenContractAddress, string senderAddress, string recepientAddress, string amount)
+        public async Task<ActionResult<bool>> TransferFrom(string tokenContractAddress, string delegatorAccountAddress,string senderAddress, string recepientAddress, double amount)
         {
-            return await _proxyFactory.CreateLedgerProxy().TransferFromAsync(tokenContractAddress, senderAddress, recepientAddress, amount);
+            return await _proxyFactory.CreateLedgerProxy().TransferFromAsync(tokenContractAddress, delegatorAccountAddress, senderAddress, recepientAddress, amount);
         }
 
         [HttpPost]
         [Route("Transfer")]
-        public async Task<ActionResult<bool>> Transfer(string tokenContractAddress, string recepientAddress, string amount)
+        public async Task<ActionResult<bool>> Transfer(string tokenContractAddress, string senderAccountAddress,string recepientAddress, double amount)
         {
-            return await _proxyFactory.CreateLedgerProxy().TransferAsync(tokenContractAddress, recepientAddress, amount);
+            return await _proxyFactory.CreateLedgerProxy().TransferAsync(tokenContractAddress, senderAccountAddress, recepientAddress, amount);
         }
 
         [HttpPost]
         [Route("Approve")]
-        public async Task<ActionResult<bool>> Approve(string tokenContractAddress, string account, string spenderAccress, string amount)
+        public async Task<ActionResult<bool>> Approve(string tokenContractAddress, string approverAccountAddress, string spenderAccress, double amount)
         {
-            return await _proxyFactory.CreateLedgerProxy().ApproveAsync(tokenContractAddress, account, spenderAccress, amount);
+            return await _proxyFactory.CreateLedgerProxy().ApproveAsync(tokenContractAddress, approverAccountAddress, spenderAccress, amount);
         }
 
         [HttpPost]
@@ -105,5 +105,50 @@ namespace TR20.Loyalty.APIService.Controllers
         {
             return  _proxyFactory.CreateTrackerProxy().GetTransactionInformationByAccountAsync(tokenContractAddress, account);
         }
+
+        [HttpPost]
+        [Route("DeployTokenRewarderContract")]
+        public async Task<ActionResult<string>> DeployTokenRewarder(string tokenContractAddress, string tokenOwnerAccountAddress, string rewarderName)
+        {
+            return await _proxyFactory.CreateLedgerProxy().DeployTokenRewarderAsync(tokenContractAddress, tokenOwnerAccountAddress, rewarderName);
+        }
+
+        [HttpPost]
+        [Route("SendRewardToken")]
+        public async Task<bool> SendRewardToken(string tokenContractAddress, string tokenContractOwner,string receipientAddress, double TokenAmount)
+        {
+            return await _proxyFactory.CreateLedgerProxy().SendRewardTokenAsync(tokenContractAddress, tokenContractOwner, receipientAddress, TokenAmount);
+        }
+
+        [HttpPost]
+        [Route("DeployExchangeTokenContract")]
+        public async Task<ActionResult<string>> DeployExchangeToken()
+        {
+            return await _proxyFactory.CreateLedgerProxy().DeployExchangeTokenAsync();
+        }
+
+        [HttpPost]
+        [Route("ExchangeToken")]
+        public async Task<bool> ExchangeToken(
+            string tokenExchangecontractAddress,
+            string exchangeMarketAddress,
+            string exchangerAccountAddress,
+            string sourceTokenContractAddress,
+            string targetTokenContractAddress,
+            int exchangeRatePercentage,
+            int TokenAmount
+            )
+        {
+            return await _proxyFactory.CreateLedgerProxy().ExchangeTokenAsync(
+                tokenExchangecontractAddress,
+                exchangeMarketAddress,
+                exchangerAccountAddress,
+                sourceTokenContractAddress,
+                targetTokenContractAddress,
+                exchangeRatePercentage,
+                TokenAmount
+                );
+        }
+
     }
 }

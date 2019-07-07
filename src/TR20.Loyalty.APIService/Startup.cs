@@ -55,7 +55,7 @@ namespace TR20.Loyalty.APIService
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "TR20 Loyalty Token Ledger API Service");
             });
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

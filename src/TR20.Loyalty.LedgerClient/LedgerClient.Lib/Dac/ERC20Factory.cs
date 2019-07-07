@@ -7,7 +7,7 @@ using System.Numerics;
 
 namespace TR20.Loyalty.LedgerClient.Lib
 {
-    public class ERC20Factory : ERC20Base
+    public class ERC20Factory : LedgerClientBase
     {
         public ERC20Factory(string connectionString, string address) : base(connectionString, address)
         {

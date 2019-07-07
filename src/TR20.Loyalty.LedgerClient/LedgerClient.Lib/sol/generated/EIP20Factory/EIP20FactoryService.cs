@@ -10,15 +10,14 @@ using Nethereum.Contracts.CQS;
 using Nethereum.Contracts.ContractHandlers;
 using Nethereum.Contracts;
 using System.Threading;
-using TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20Factory;
 
-namespace TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20Factory
+namespace TR20.Loyalty.LedgerClient.Contracts.EIP20Factory
 {
     public partial class EIP20FactoryService
     {
-        public static Task<TransactionReceipt> DeployContractAndWaitForReceiptAsync(Nethereum.Web3.Web3 web3, EIP20FactoryDeployment eIP20FactoryDeployment)
+        public static Task<TransactionReceipt> DeployContractAndWaitForReceiptAsync(Nethereum.Web3.Web3 web3, EIP20FactoryDeployment eIP20FactoryDeployment, CancellationTokenSource cancellationTokenSource = null)
         {
-            return web3.Eth.GetContractDeploymentHandler<EIP20FactoryDeployment>().SendRequestAndWaitForReceiptAsync(eIP20FactoryDeployment);
+            return web3.Eth.GetContractDeploymentHandler<EIP20FactoryDeployment>().SendRequestAndWaitForReceiptAsync(eIP20FactoryDeployment, cancellationTokenSource);
         }
 
         public static Task<string> DeployContractAsync(Nethereum.Web3.Web3 web3, EIP20FactoryDeployment eIP20FactoryDeployment)
@@ -28,7 +27,7 @@ namespace TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20Factory
 
         public static async Task<EIP20FactoryService> DeployContractAndGetServiceAsync(Nethereum.Web3.Web3 web3, EIP20FactoryDeployment eIP20FactoryDeployment, CancellationTokenSource cancellationTokenSource = null)
         {
-            var receipt = await DeployContractAndWaitForReceiptAsync(web3, eIP20FactoryDeployment);
+            var receipt = await DeployContractAndWaitForReceiptAsync(web3, eIP20FactoryDeployment, cancellationTokenSource);
             return new EIP20FactoryService(web3, receipt.ContractAddress);
         }
 
@@ -47,9 +46,9 @@ namespace TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20Factory
              return ContractHandler.SendRequestAsync(createEIP20Function);
         }
 
-        public Task<TransactionReceipt> CreateEIP20RequestAndWaitForReceiptAsync(CreateEIP20Function createEIP20Function)
+        public Task<TransactionReceipt> CreateEIP20RequestAndWaitForReceiptAsync(CreateEIP20Function createEIP20Function, CancellationTokenSource cancellationToken = null)
         {
-             return ContractHandler.SendRequestAndWaitForReceiptAsync(createEIP20Function);
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(createEIP20Function, cancellationToken);
         }
 
         public Task<string> CreateEIP20RequestAsync(BigInteger initialAmount, string name, byte decimals, string symbol)
@@ -63,15 +62,16 @@ namespace TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20Factory
              return ContractHandler.SendRequestAsync(createEIP20Function);
         }
 
-        public Task<TransactionReceipt> CreateEIP20RequestAndWaitForReceiptAsync(BigInteger initialAmount, string name, byte decimals, string symbol)
+        public Task<TransactionReceipt> CreateEIP20RequestAndWaitForReceiptAsync(BigInteger initialAmount, string name, byte decimals, string symbol, CancellationTokenSource cancellationToken = null)
         {
             var createEIP20Function = new CreateEIP20Function();
                 createEIP20Function.InitialAmount = initialAmount;
                 createEIP20Function.Name = name;
                 createEIP20Function.Decimals = decimals;
                 createEIP20Function.Symbol = symbol;
-            
-             return ContractHandler.SendRequestAndWaitForReceiptAsync(createEIP20Function);
+            createEIP20Function.Gas = new BigInteger(999999);
+
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(createEIP20Function, cancellationToken);
         }
 
         public Task<string> CreatedQueryAsync(CreatedFunction createdFunction, BlockParameter blockParameter = null)

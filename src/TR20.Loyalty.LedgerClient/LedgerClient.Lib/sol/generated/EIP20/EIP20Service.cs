@@ -10,15 +10,15 @@ using Nethereum.Contracts.CQS;
 using Nethereum.Contracts.ContractHandlers;
 using Nethereum.Contracts;
 using System.Threading;
-using TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20;
 
-namespace TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20
+
+namespace TR20.Loyalty.LedgerClient.Contracts.EIP20
 {
     public partial class EIP20Service
     {
         public static Task<TransactionReceipt> DeployContractAndWaitForReceiptAsync(Nethereum.Web3.Web3 web3, EIP20Deployment eIP20Deployment, CancellationTokenSource cancellationTokenSource = null)
         {
-            return web3.Eth.GetContractDeploymentHandler<EIP20Deployment>().SendRequestAndWaitForReceiptAsync(eIP20Deployment);
+            return web3.Eth.GetContractDeploymentHandler<EIP20Deployment>().SendRequestAndWaitForReceiptAsync(eIP20Deployment, cancellationTokenSource);
         }
 
         public static Task<string> DeployContractAsync(Nethereum.Web3.Web3 web3, EIP20Deployment eIP20Deployment)
@@ -60,7 +60,7 @@ namespace TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20
 
         public Task<TransactionReceipt> ApproveRequestAndWaitForReceiptAsync(ApproveFunction approveFunction, CancellationTokenSource cancellationToken = null)
         {
-             return ContractHandler.SendRequestAndWaitForReceiptAsync(approveFunction);
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(approveFunction, cancellationToken);
         }
 
         public Task<string> ApproveRequestAsync(string spender, BigInteger value)
@@ -78,7 +78,7 @@ namespace TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20
                 approveFunction.Spender = spender;
                 approveFunction.Value = value;
             
-             return ContractHandler.SendRequestAndWaitForReceiptAsync(approveFunction);
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(approveFunction, cancellationToken);
         }
 
         public Task<BigInteger> TotalSupplyQueryAsync(TotalSupplyFunction totalSupplyFunction, BlockParameter blockParameter = null)
@@ -99,7 +99,7 @@ namespace TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20
 
         public Task<TransactionReceipt> TransferFromRequestAndWaitForReceiptAsync(TransferFromFunction transferFromFunction, CancellationTokenSource cancellationToken = null)
         {
-             return ContractHandler.SendRequestAndWaitForReceiptAsync(transferFromFunction);
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(transferFromFunction, cancellationToken);
         }
 
         public Task<string> TransferFromRequestAsync(string from, string to, BigInteger value)
@@ -118,8 +118,9 @@ namespace TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20
                 transferFromFunction.From = from;
                 transferFromFunction.To = to;
                 transferFromFunction.Value = value;
-            
-             return ContractHandler.SendRequestAndWaitForReceiptAsync(transferFromFunction);
+            transferFromFunction.Gas = new BigInteger(999999);
+
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(transferFromFunction, cancellationToken);
         }
 
         public Task<BigInteger> BalancesQueryAsync(BalancesFunction balancesFunction, BlockParameter blockParameter = null)
@@ -194,7 +195,7 @@ namespace TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20
 
         public Task<TransactionReceipt> TransferRequestAndWaitForReceiptAsync(TransferFunction transferFunction, CancellationTokenSource cancellationToken = null)
         {
-             return ContractHandler.SendRequestAndWaitForReceiptAsync(transferFunction);
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(transferFunction, cancellationToken);
         }
 
         public Task<string> TransferRequestAsync(string to, BigInteger value)
@@ -212,7 +213,7 @@ namespace TR20.Loyalty.LedgerClient.Lib.Contracts.EIP20
                 transferFunction.To = to;
                 transferFunction.Value = value;
             
-             return ContractHandler.SendRequestAndWaitForReceiptAsync(transferFunction);
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(transferFunction, cancellationToken);
         }
 
         public Task<BigInteger> AllowanceQueryAsync(AllowanceFunction allowanceFunction, BlockParameter blockParameter = null)

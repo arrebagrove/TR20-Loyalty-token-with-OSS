@@ -1,0 +1,25 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MileageTokenService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CompanyInfo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">
+                  [
+                  {
+                  "Name": "Contoso Airline",
+                  "ContractAddress": "",
+                  "Address": "0x0071df3755926F5C38b4cb68d550807db74DcbAc",
+                  "TokenAddress": ""
+                  }
+                  ,
+                  {
+                  "Name": "Contoso Rent a Car",
+                  "ContractAddress": "",
+                  "Address": "0xB897f342D673fB16C38D8Ca4e31F39EE727720A1",
+                  "TokenAddress": ""
+                  }
+
+                  ]</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

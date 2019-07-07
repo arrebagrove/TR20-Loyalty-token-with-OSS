@@ -36,19 +36,19 @@ namespace TR20.Loyalty.LedgerClient.Host.Controllers
         [Route("IsERP20")]
         public async Task<ActionResult<bool>> IsERP20(string tokenFactoryContractAddress, string tokenContractAddress)
         {
-            ERC20FactoryService erc20FactoryService = new ERC20FactoryService(this.HTTPRPCEndpoint, tokenContractAddress ,this.APPAccount);
+            ERC20FactoryService erc20FactoryService = new ERC20FactoryService(this.HTTPRPCEndpoint, tokenContractAddress, this.APPAccount);
             return await erc20FactoryService.IsERP20Async(tokenFactoryContractAddress, tokenContractAddress);
         }
 
         [HttpPost]
         [Route("SetupToken")]
-        public async Task<ActionResult<TokenInfo>> SetupToken(string tokenFactoryContractAddress, BigInteger TotalAmountToken,
+        public async Task<ActionResult<TokenInfo>> SetupToken(string tokenFactoryContractAddress, Decimal TotalAmountToken,
                                                         string Name,
                                                         byte Decimal,
                                                         string Symbol)
         {
-            ERC20FactoryService erc20FactoryService = new ERC20FactoryService(this.HTTPRPCEndpoint, tokenFactoryContractAddress ,this.APPAccount);
-            return await erc20FactoryService.SetupTokenAsync(tokenFactoryContractAddress, TotalAmountToken, Name, Decimal, Symbol);
+            ERC20FactoryService erc20FactoryService = new ERC20FactoryService(this.HTTPRPCEndpoint, tokenFactoryContractAddress, this.APPAccount);
+            return await erc20FactoryService.SetupTokenAsync(tokenFactoryContractAddress, new BigInteger(TotalAmountToken), Name, Decimal, Symbol);
         }
 
         [HttpPost]
@@ -61,26 +61,26 @@ namespace TR20.Loyalty.LedgerClient.Host.Controllers
 
         [HttpPost]
         [Route("TransferFrom")]
-        public async Task<ActionResult<bool>> TransferFrom(string tokenContractAddress, string senderAddress, string recepientAddress, BigInteger amount)
+        public async Task<ActionResult<bool>> TransferFrom(string tokenContractAddress, string loginAccountAddress, string senderAddress, string recepientAddress, Decimal amount)
         {
-            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, this.APPAccount);
-            return await erc20Service.TransferFromAsync(senderAddress, recepientAddress, amount);
+            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, loginAccountAddress);
+            return await erc20Service.TransferFromAsync(senderAddress, recepientAddress, new BigInteger(amount));
         }
 
         [HttpPost]
         [Route("Transfer")]
-        public async Task<ActionResult<bool>> Transfer(string tokenContractAddress, string recepientAddress, BigInteger amount)
+        public async Task<ActionResult<bool>> Transfer(string tokenContractAddress, string loginAccountAddress, string recepientAddress, Decimal amount)
         {
-            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, this.APPAccount);
-            return await erc20Service.TransferAsync(recepientAddress, amount);
+            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, loginAccountAddress);
+            return await erc20Service.TransferAsync(recepientAddress, new BigInteger(amount));
         }
 
         [HttpPost]
         [Route("Approve")]
-        public async Task<ActionResult<bool>> Approve(string tokenContractAddress, string account, string spenderAccress, BigInteger amount)
+        public async Task<ActionResult<bool>> Approve(string tokenContractAddress, string loginAccountAddress, string spenderAccress, Decimal amount)
         {
-            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, account);
-            return await erc20Service.ApproveAsync(spenderAccress, amount);
+            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, loginAccountAddress);
+            return await erc20Service.ApproveAsync(spenderAccress, new BigInteger(amount));
         }
 
 
@@ -91,5 +91,70 @@ namespace TR20.Loyalty.LedgerClient.Host.Controllers
             ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, this.APPAccount);
             return await erc20Service.GetTokenInfoAsync();
         }
+
+        [HttpPost]
+        [Route("DeployTokenRewarderContract")]
+        public async Task<ActionResult<string>> DeployTokenRewarder(string tokenContractAddress, string tokenOwnerAccountAddress, string rewarderName)
+        {
+            TokenRewarderService tokenRewarderService = new TokenRewarderService(
+                this.HTTPRPCEndpoint,
+                tokenOwnerAccountAddress);
+
+            return await tokenRewarderService.DeployTokenRewarderContract(tokenContractAddress, rewarderName);
+        }
+
+        [HttpPost]
+        [Route("SendRewardToken")]
+        public async Task<bool> SendRewardToken(string tokenContractAddress, string tokenContractOwner, string receipientAddress, Decimal TokenAmount)
+        {
+            TokenRewarderService tokenRewarderService = new TokenRewarderService(
+                this.HTTPRPCEndpoint,
+                tokenContractOwner);
+
+            return await tokenRewarderService.SendRewardTokenAsync(tokenContractAddress, receipientAddress, new BigInteger(TokenAmount));
+        }
+
+        [HttpPost]
+        [Route("DeployExchangeTokenContract")]
+        public async Task<ActionResult<string>> DeployExchangeToken()
+        {
+            ExchangeTokenService exchangeTokenService = new ExchangeTokenService(
+                this.HTTPRPCEndpoint,
+                this.APPAccount);
+
+            return await exchangeTokenService.DeployExchangeTokenContract();
+        }
+
+        [HttpPost]
+        [Route("ExchangeToken")]
+        public async Task<bool> ExchangeToken(
+            string tokenExchangecontractAddress,
+            string exchangeMarketAddress,
+            string exchangerAccountAddress,
+            string sourceTokenContractAddress,
+            string targetTokenContractAddress,
+            decimal exchangeRaptePercentage,
+            decimal TokenAmount
+            )
+        {
+            ExchangeTokenService exchangeTokenService = new ExchangeTokenService(
+                this.HTTPRPCEndpoint,
+                this.APPAccount
+                );
+
+
+            return await exchangeTokenService.ExchangeTokens(
+                    tokenExchangecontractAddress,
+                    exchangeMarketAddress,
+                    exchangerAccountAddress,
+                    sourceTokenContractAddress,
+                    targetTokenContractAddress,
+                    new BigInteger(exchangeRaptePercentage),
+                    new BigInteger(TokenAmount));
+        }
+
+
+
+
     }
 }

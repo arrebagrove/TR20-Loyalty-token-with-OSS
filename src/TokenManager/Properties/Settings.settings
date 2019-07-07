@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TokenManager.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="APILocation" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://loyalty.westus2.cloudapp.azure.com</Value>
+    </Setting>
+    <Setting Name="ApplicationAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0xFF1D19EBE9Da2D81Ce5480a2Dab1C1C5faA3e2dD</Value>
+    </Setting>
+    <Setting Name="TokenInfos" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="TokenFactoryAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0xa82fd99261b16f92f9f7bb7010bb39b6d845603b</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

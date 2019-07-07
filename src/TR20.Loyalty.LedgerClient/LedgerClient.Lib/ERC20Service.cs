@@ -22,10 +22,9 @@ namespace TR20.Loyalty.LedgerClient.Lib
             this.HttpRPCEndpoint = httpRPCEndpoint;
             this.tokenContractAddress = tokenContractAddress;
             this.account = account;
-
             indexerProxy = new IndexerServiceProxy("http://txindexer/",
                 new System.Net.Http.HttpClient());
-        }
+            }
 
         private ERC20Service()
         {
@@ -96,8 +95,10 @@ namespace TR20.Loyalty.LedgerClient.Lib
                         TokenAddress = transactionContext.BusinessContractDTO.TokenAddress
                     }
                 };
-                await indexerProxy.LogTransactionAsync(_transactionContext, transactionContext.BusinessContractDTO.Description);
 
+#if !DEBUG
+                await indexerProxy.LogTransactionAsync(_transactionContext, transactionContext.BusinessContractDTO.Description);
+#endif
 
                 return true;
             }
@@ -115,6 +116,7 @@ namespace TR20.Loyalty.LedgerClient.Lib
             {
                 var txReceipt = await erc20.TransferAsync(recepientAddress, amount);
                 //adding log to Offchain
+
                 var transactionContext = new OffChain.ContractTransaction(this.account,
                      new OffChain.TokenTransfer()
                      {
@@ -166,8 +168,9 @@ namespace TR20.Loyalty.LedgerClient.Lib
                     }
                 };
 
+#if !DEBUG
                 await indexerProxy.LogTransactionAsync(_transactionContext, transactionContext.BusinessContractDTO.Description);
-
+#endif
                 return true;
             }
             catch (Exception ex)

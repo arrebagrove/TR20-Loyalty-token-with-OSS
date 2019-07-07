@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TR20.Loyalty.LedgerClient.Lib
 {
-    public class ERC20 : ERC20Base
+    public class ERC20 : LedgerClientBase
     {
         string tokenAddress = "";
 

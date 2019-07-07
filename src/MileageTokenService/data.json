@@ -1,0 +1,18 @@
+﻿[
+  {
+    "Company": {
+      "Name": "Contoso Airline",
+      "ContractAddress": "",
+      "Address": "",
+      "TokenAddress": ""
+    }
+  },
+  {
+    "Company": {
+      "Name": "Contoso Rent a Car",
+      "ContractAddress": "",
+      "Address": "",
+      "TokenAddress": ""
+    }
+  }
+]

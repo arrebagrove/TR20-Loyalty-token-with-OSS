@@ -6,14 +6,14 @@ using System.Text;
 
 namespace TR20.Loyalty.LedgerClient.Lib
 {
-    public class ERC20Base
+    public class LedgerClientBase
     {
         protected Web3 web3;
 
-        protected ERC20Base(string connectionString, string address)
+        protected LedgerClientBase(string connectionString, string address)
         {
             KeyVaultClient kvClient = new KeyVaultClient();
-            var privateKey = kvClient.ReadSecret(address).GetAwaiter().GetResult().Value;
+            var privateKey = kvClient.ReadSecret(address).GetAwaiter().GetResult().Value.Trim();
             web3 = new Web3(new Account(privateKey), url: connectionString);
         }
     }
