@@ -142,6 +142,7 @@
             this.txtTokenAmount.Name = "txtTokenAmount";
             this.txtTokenAmount.Size = new System.Drawing.Size(413, 29);
             this.txtTokenAmount.TabIndex = 1;
+            this.txtTokenAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtMileageContractAddress
             // 

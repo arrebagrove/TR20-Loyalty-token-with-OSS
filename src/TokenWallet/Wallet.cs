@@ -49,6 +49,8 @@ namespace TokenWallet
                     break;
             }
         }
+        private string previousValue = null;
+        private Color previousColor;
 
         private async Task CheckBalance()
         {
@@ -58,8 +60,8 @@ namespace TokenWallet
                 var tokenInfo = (TokenInfo)this.cboToken.SelectedItem;
                 var userInfo = (AccountInfo)this.cboUser.SelectedItem;
 
-               var balance =
-                    await  apiSvc.GetBalance(tokenInfo.TokenContractAddress, userInfo.AccountPubAddress);
+                var balance =
+                     await apiSvc.GetBalance(tokenInfo.TokenContractAddress, userInfo.AccountPubAddress);
 
                 this.txtBalance.Text = balance;
 
@@ -67,6 +69,28 @@ namespace TokenWallet
                     await apiSvc.GetTokenInfo(tokenInfo.TokenContractAddress);
 
                 this.lblSymbol.Text = tokeninfo.Symbol;
+
+
+                if (previousValue == null)
+                {
+                    previousValue = this.txtBalance.Text;
+                    return;
+                }
+
+                if (previousValue == this.txtBalance.Text)
+                {
+                    this.txtBalance.BackColor = this.previousColor;
+
+                }
+                else
+                {
+                    this.previousValue = this.txtBalance.Text;
+                    this.previousColor = this.txtBalance.BackColor;
+
+                    if (!timerAccount.Enabled) return;
+
+                    this.txtBalance.BackColor = Color.Yellow;
+                }
             }
         }
 
@@ -185,7 +209,7 @@ namespace TokenWallet
         {
             if (tblWallet.SelectedIndex == 0)
             {
-               await CheckBalance();
+                await CheckBalance();
             }
         }
 
@@ -232,5 +256,5 @@ namespace TokenWallet
             MessageBox.Show($"Approved : \n Approver : {userInfo.AccountName}\n Spender : {txtSpenderAddress.Text}\n Approved Amount : {txtApprovedAmount.Text}");
         }
     }
-    
+
 }

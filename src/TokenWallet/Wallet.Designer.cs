@@ -41,9 +41,23 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.tblWallet = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.lblSymbol = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnTransfer = new System.Windows.Forms.Button();
+            this.txtTokenAmount = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtRecipient = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtBalance = new System.Windows.Forms.TextBox();
+            this.chkMonitor = new System.Windows.Forms.CheckBox();
             this.lblBalance = new System.Windows.Forms.Label();
+            this.lblSymbol = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnApporve = new System.Windows.Forms.Button();
+            this.txtApprovedAmount = new System.Windows.Forms.TextBox();
+            this.txtSpenderAddress = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblSpender = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.brncfgAddNewUser = new System.Windows.Forms.Button();
@@ -61,33 +75,19 @@
             this.txtcfgTokenName = new System.Windows.Forms.TextBox();
             this.lblcfgTokenNam = new System.Windows.Forms.Label();
             this.lblcfgTokenAddress = new System.Windows.Forms.Label();
-            this.chkMonitor = new System.Windows.Forms.CheckBox();
             this.timerAccount = new System.Windows.Forms.Timer(this.components);
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtRecipient = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtTokenAmount = new System.Windows.Forms.TextBox();
-            this.btnTransfer = new System.Windows.Forms.Button();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.lblSpender = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtApprovedAmount = new System.Windows.Forms.TextBox();
-            this.txtSpenderAddress = new System.Windows.Forms.TextBox();
-            this.btnApporve = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tblWallet.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -226,23 +226,98 @@
             this.tabPage1.Text = "Wallet (Balance)";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // lblSymbol
+            // groupBox4
             // 
-            this.lblSymbol.AutoSize = true;
-            this.lblSymbol.Location = new System.Drawing.Point(341, 24);
-            this.lblSymbol.Name = "lblSymbol";
-            this.lblSymbol.Size = new System.Drawing.Size(0, 21);
-            this.lblSymbol.TabIndex = 2;
+            this.groupBox4.Controls.Add(this.btnTransfer);
+            this.groupBox4.Controls.Add(this.txtTokenAmount);
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.txtRecipient);
+            this.groupBox4.Controls.Add(this.label1);
+            this.groupBox4.Location = new System.Drawing.Point(10, 166);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(731, 145);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Transfer Token";
+            // 
+            // btnTransfer
+            // 
+            this.btnTransfer.Location = new System.Drawing.Point(578, 76);
+            this.btnTransfer.Name = "btnTransfer";
+            this.btnTransfer.Size = new System.Drawing.Size(112, 29);
+            this.btnTransfer.TabIndex = 2;
+            this.btnTransfer.Text = "Transfer";
+            this.btnTransfer.UseVisualStyleBackColor = true;
+            this.btnTransfer.Click += new System.EventHandler(this.BtnTransfer_Click);
+            // 
+            // txtTokenAmount
+            // 
+            this.txtTokenAmount.Location = new System.Drawing.Point(144, 76);
+            this.txtTokenAmount.Name = "txtTokenAmount";
+            this.txtTokenAmount.Size = new System.Drawing.Size(391, 29);
+            this.txtTokenAmount.TabIndex = 1;
+            this.txtTokenAmount.TabStop = false;
+            this.txtTokenAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(32, 79);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 21);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Amount";
+            // 
+            // txtRecipient
+            // 
+            this.txtRecipient.Location = new System.Drawing.Point(144, 41);
+            this.txtRecipient.Name = "txtRecipient";
+            this.txtRecipient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtRecipient.Size = new System.Drawing.Size(391, 29);
+            this.txtRecipient.TabIndex = 1;
+            this.txtRecipient.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(32, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 21);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Recipient";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.txtBalance);
+            this.groupBox3.Controls.Add(this.chkMonitor);
+            this.groupBox3.Controls.Add(this.lblBalance);
+            this.groupBox3.Location = new System.Drawing.Point(10, 24);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(731, 100);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Balance";
             // 
             // txtBalance
             // 
             this.txtBalance.Location = new System.Drawing.Point(144, 41);
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.ReadOnly = true;
-            this.txtBalance.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtBalance.Size = new System.Drawing.Size(229, 29);
             this.txtBalance.TabIndex = 1;
             this.txtBalance.TabStop = false;
+            this.txtBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // chkMonitor
+            // 
+            this.chkMonitor.AutoSize = true;
+            this.chkMonitor.Location = new System.Drawing.Point(413, 45);
+            this.chkMonitor.Name = "chkMonitor";
+            this.chkMonitor.Size = new System.Drawing.Size(184, 25);
+            this.chkMonitor.TabIndex = 3;
+            this.chkMonitor.Text = "Monitor my account";
+            this.chkMonitor.UseVisualStyleBackColor = true;
+            this.chkMonitor.CheckedChanged += new System.EventHandler(this.ChkMonitor_CheckedChanged);
             // 
             // lblBalance
             // 
@@ -252,6 +327,75 @@
             this.lblBalance.Size = new System.Drawing.Size(70, 21);
             this.lblBalance.TabIndex = 0;
             this.lblBalance.Text = "Balance";
+            // 
+            // lblSymbol
+            // 
+            this.lblSymbol.AutoSize = true;
+            this.lblSymbol.Location = new System.Drawing.Point(341, 24);
+            this.lblSymbol.Name = "lblSymbol";
+            this.lblSymbol.Size = new System.Drawing.Size(0, 21);
+            this.lblSymbol.TabIndex = 2;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.btnApporve);
+            this.tabPage3.Controls.Add(this.txtApprovedAmount);
+            this.tabPage3.Controls.Add(this.txtSpenderAddress);
+            this.tabPage3.Controls.Add(this.label3);
+            this.tabPage3.Controls.Add(this.lblSpender);
+            this.tabPage3.Location = new System.Drawing.Point(4, 30);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1315, 457);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Approve";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnApporve
+            // 
+            this.btnApporve.Location = new System.Drawing.Point(414, 230);
+            this.btnApporve.Name = "btnApporve";
+            this.btnApporve.Size = new System.Drawing.Size(215, 41);
+            this.btnApporve.TabIndex = 4;
+            this.btnApporve.Text = "Approve Delegation";
+            this.btnApporve.UseVisualStyleBackColor = true;
+            this.btnApporve.Click += new System.EventHandler(this.BtnApporve_Click);
+            // 
+            // txtApprovedAmount
+            // 
+            this.txtApprovedAmount.Location = new System.Drawing.Point(238, 174);
+            this.txtApprovedAmount.Name = "txtApprovedAmount";
+            this.txtApprovedAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtApprovedAmount.Size = new System.Drawing.Size(391, 29);
+            this.txtApprovedAmount.TabIndex = 2;
+            this.txtApprovedAmount.TabStop = false;
+            // 
+            // txtSpenderAddress
+            // 
+            this.txtSpenderAddress.Location = new System.Drawing.Point(238, 85);
+            this.txtSpenderAddress.Name = "txtSpenderAddress";
+            this.txtSpenderAddress.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtSpenderAddress.Size = new System.Drawing.Size(391, 29);
+            this.txtSpenderAddress.TabIndex = 3;
+            this.txtSpenderAddress.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(83, 177);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(122, 21);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Token Amount";
+            // 
+            // lblSpender
+            // 
+            this.lblSpender.AutoSize = true;
+            this.lblSpender.Location = new System.Drawing.Point(83, 88);
+            this.lblSpender.Name = "lblSpender";
+            this.lblSpender.Size = new System.Drawing.Size(137, 21);
+            this.lblSpender.TabIndex = 0;
+            this.lblSpender.Text = "Spender Address";
             // 
             // tabPage2
             // 
@@ -421,154 +565,10 @@
             this.lblcfgTokenAddress.TabIndex = 0;
             this.lblcfgTokenAddress.Text = "TokenAddress";
             // 
-            // chkMonitor
-            // 
-            this.chkMonitor.AutoSize = true;
-            this.chkMonitor.Location = new System.Drawing.Point(541, 43);
-            this.chkMonitor.Name = "chkMonitor";
-            this.chkMonitor.Size = new System.Drawing.Size(184, 25);
-            this.chkMonitor.TabIndex = 3;
-            this.chkMonitor.Text = "Monitor my account";
-            this.chkMonitor.UseVisualStyleBackColor = true;
-            this.chkMonitor.CheckedChanged += new System.EventHandler(this.ChkMonitor_CheckedChanged);
-            // 
             // timerAccount
             // 
             this.timerAccount.Interval = 3000;
             this.timerAccount.Tick += new System.EventHandler(this.TimerAccount_Tick);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.txtBalance);
-            this.groupBox3.Controls.Add(this.chkMonitor);
-            this.groupBox3.Controls.Add(this.lblBalance);
-            this.groupBox3.Location = new System.Drawing.Point(10, 24);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(731, 100);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Balance";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.btnTransfer);
-            this.groupBox4.Controls.Add(this.txtTokenAmount);
-            this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Controls.Add(this.txtRecipient);
-            this.groupBox4.Controls.Add(this.label1);
-            this.groupBox4.Location = new System.Drawing.Point(10, 166);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(731, 145);
-            this.groupBox4.TabIndex = 4;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Transfer Token";
-            // 
-            // txtRecipient
-            // 
-            this.txtRecipient.Location = new System.Drawing.Point(144, 41);
-            this.txtRecipient.Name = "txtRecipient";
-            this.txtRecipient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtRecipient.Size = new System.Drawing.Size(391, 29);
-            this.txtRecipient.TabIndex = 1;
-            this.txtRecipient.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Recipient";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 79);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 21);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Amount";
-            // 
-            // txtTokenAmount
-            // 
-            this.txtTokenAmount.Location = new System.Drawing.Point(144, 76);
-            this.txtTokenAmount.Name = "txtTokenAmount";
-            this.txtTokenAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtTokenAmount.Size = new System.Drawing.Size(391, 29);
-            this.txtTokenAmount.TabIndex = 1;
-            this.txtTokenAmount.TabStop = false;
-            // 
-            // btnTransfer
-            // 
-            this.btnTransfer.Location = new System.Drawing.Point(578, 76);
-            this.btnTransfer.Name = "btnTransfer";
-            this.btnTransfer.Size = new System.Drawing.Size(112, 29);
-            this.btnTransfer.TabIndex = 2;
-            this.btnTransfer.Text = "Transfer";
-            this.btnTransfer.UseVisualStyleBackColor = true;
-            this.btnTransfer.Click += new System.EventHandler(this.BtnTransfer_Click);
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.btnApporve);
-            this.tabPage3.Controls.Add(this.txtApprovedAmount);
-            this.tabPage3.Controls.Add(this.txtSpenderAddress);
-            this.tabPage3.Controls.Add(this.label3);
-            this.tabPage3.Controls.Add(this.lblSpender);
-            this.tabPage3.Location = new System.Drawing.Point(4, 30);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1315, 457);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Approve";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // lblSpender
-            // 
-            this.lblSpender.AutoSize = true;
-            this.lblSpender.Location = new System.Drawing.Point(83, 88);
-            this.lblSpender.Name = "lblSpender";
-            this.lblSpender.Size = new System.Drawing.Size(137, 21);
-            this.lblSpender.TabIndex = 0;
-            this.lblSpender.Text = "Spender Address";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(83, 177);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(122, 21);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Token Amount";
-            // 
-            // txtApprovedAmount
-            // 
-            this.txtApprovedAmount.Location = new System.Drawing.Point(238, 174);
-            this.txtApprovedAmount.Name = "txtApprovedAmount";
-            this.txtApprovedAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtApprovedAmount.Size = new System.Drawing.Size(391, 29);
-            this.txtApprovedAmount.TabIndex = 2;
-            this.txtApprovedAmount.TabStop = false;
-            // 
-            // txtSpenderAddress
-            // 
-            this.txtSpenderAddress.Location = new System.Drawing.Point(238, 85);
-            this.txtSpenderAddress.Name = "txtSpenderAddress";
-            this.txtSpenderAddress.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtSpenderAddress.Size = new System.Drawing.Size(391, 29);
-            this.txtSpenderAddress.TabIndex = 3;
-            this.txtSpenderAddress.TabStop = false;
-            // 
-            // btnApporve
-            // 
-            this.btnApporve.Location = new System.Drawing.Point(414, 230);
-            this.btnApporve.Name = "btnApporve";
-            this.btnApporve.Size = new System.Drawing.Size(215, 41);
-            this.btnApporve.TabIndex = 4;
-            this.btnApporve.Text = "Approve Delegation";
-            this.btnApporve.UseVisualStyleBackColor = true;
-            this.btnApporve.Click += new System.EventHandler(this.BtnApporve_Click);
             // 
             // Wallet
             // 
@@ -589,17 +589,17 @@
             this.tblWallet.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }

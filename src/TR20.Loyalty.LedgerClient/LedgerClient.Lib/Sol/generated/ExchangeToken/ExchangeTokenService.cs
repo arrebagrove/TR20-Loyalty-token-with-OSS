@@ -31,7 +31,7 @@ namespace TR20.Loyalty.LedgerClient.Contracts.ExchangeToken
             return new ExchangeTokenService(web3, receipt.ContractAddress);
         }
 
-        protected Nethereum.Web3.Web3 Web3{ get; }
+        protected Nethereum.Web3.Web3 Web3 { get; }
 
         public ContractHandler ContractHandler { get; }
 
@@ -43,38 +43,38 @@ namespace TR20.Loyalty.LedgerClient.Contracts.ExchangeToken
 
         public Task<string> ExchangeRequestAsync(ExchangeFunction exchangeFunction)
         {
-             return ContractHandler.SendRequestAsync(exchangeFunction);
+            return ContractHandler.SendRequestAsync(exchangeFunction);
         }
 
         public Task<TransactionReceipt> ExchangeRequestAndWaitForReceiptAsync(ExchangeFunction exchangeFunction, CancellationTokenSource cancellationToken = null)
         {
-             return ContractHandler.SendRequestAndWaitForReceiptAsync(exchangeFunction, cancellationToken);
+            return ContractHandler.SendRequestAndWaitForReceiptAsync(exchangeFunction, cancellationToken);
         }
 
         public Task<string> ExchangeRequestAsync(string txOwner, string exchangeMarketAddress, string sourceTokenAddress, string targetTokenAddress, BigInteger exchangerate, BigInteger tokenAmount)
         {
             var exchangeFunction = new ExchangeFunction();
-                exchangeFunction.TxOwner = txOwner;
-                exchangeFunction.ExchangeMarketAddress = exchangeMarketAddress;
-                exchangeFunction.SourceTokenAddress = sourceTokenAddress;
-                exchangeFunction.TargetTokenAddress = targetTokenAddress;
-                exchangeFunction.Exchangerate = exchangerate;
-                exchangeFunction.TokenAmount = tokenAmount;
-            
-             return ContractHandler.SendRequestAsync(exchangeFunction);
+            exchangeFunction.TxOwner = txOwner;
+            exchangeFunction.ExchangeMarketAddress = exchangeMarketAddress;
+            exchangeFunction.SourceTokenAddress = sourceTokenAddress;
+            exchangeFunction.TargetTokenAddress = targetTokenAddress;
+            exchangeFunction.Exchangerate = exchangerate;
+            exchangeFunction.TokenAmount = tokenAmount;
+
+            return ContractHandler.SendRequestAsync(exchangeFunction);
         }
 
         public Task<TransactionReceipt> ExchangeRequestAndWaitForReceiptAsync(string txOwner, string exchangeMarketAddress, string sourceTokenAddress, string targetTokenAddress, BigInteger exchangerate, BigInteger tokenAmount, CancellationTokenSource cancellationToken = null)
         {
             var exchangeFunction = new ExchangeFunction();
-                exchangeFunction.TxOwner = txOwner;
-                exchangeFunction.ExchangeMarketAddress = exchangeMarketAddress;
-                exchangeFunction.SourceTokenAddress = sourceTokenAddress;
-                exchangeFunction.TargetTokenAddress = targetTokenAddress;
-                exchangeFunction.Exchangerate = exchangerate;
-                exchangeFunction.TokenAmount = tokenAmount;
-            
-             return ContractHandler.SendRequestAndWaitForReceiptAsync(exchangeFunction, cancellationToken);
+            exchangeFunction.TxOwner = txOwner;
+            exchangeFunction.ExchangeMarketAddress = exchangeMarketAddress;
+            exchangeFunction.SourceTokenAddress = sourceTokenAddress;
+            exchangeFunction.TargetTokenAddress = targetTokenAddress;
+            exchangeFunction.Exchangerate = exchangerate;
+            exchangeFunction.TokenAmount = tokenAmount;
+            exchangeFunction.Gas = new BigInteger(9999999);
+            return ContractHandler.SendRequestAndWaitForReceiptAsync(exchangeFunction, cancellationToken);
         }
 
         public Task<MappingHistoryOutputDTO> MappingHistoryQueryAsync(MappingHistoryFunction mappingHistoryFunction, BlockParameter blockParameter = null)
@@ -85,9 +85,9 @@ namespace TR20.Loyalty.LedgerClient.Contracts.ExchangeToken
         public Task<MappingHistoryOutputDTO> MappingHistoryQueryAsync(string returnValue1, BigInteger returnValue2, BlockParameter blockParameter = null)
         {
             var mappingHistoryFunction = new MappingHistoryFunction();
-                mappingHistoryFunction.ReturnValue1 = returnValue1;
-                mappingHistoryFunction.ReturnValue2 = returnValue2;
-            
+            mappingHistoryFunction.ReturnValue1 = returnValue1;
+            mappingHistoryFunction.ReturnValue2 = returnValue2;
+
             return ContractHandler.QueryDeserializingToObjectAsync<MappingHistoryFunction, MappingHistoryOutputDTO>(mappingHistoryFunction, blockParameter);
         }
     }

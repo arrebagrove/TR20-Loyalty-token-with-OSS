@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.645
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceAPI", "ServiceAPI", "{F6BCB512-4DBC-4085-A179-D40EEDE9C259}"
 EndProject
@@ -46,6 +46,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MileageTokenService", "MileageTokenService\MileageTokenService.csproj", "{160218F2-D576-42E6-84BD-5A2F7B67EDF0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenWallet", "TokenWallet\TokenWallet.csproj", "{B64399DD-D7C7-4791-B5C2-980A808BFA1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangeToken", "ExchangeToken\ExchangeToken.csproj", "{2AB511EE-2C5D-420D-B608-CFE457651763}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +115,10 @@ Global
 		{B64399DD-D7C7-4791-B5C2-980A808BFA1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B64399DD-D7C7-4791-B5C2-980A808BFA1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B64399DD-D7C7-4791-B5C2-980A808BFA1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AB511EE-2C5D-420D-B608-CFE457651763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AB511EE-2C5D-420D-B608-CFE457651763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AB511EE-2C5D-420D-B608-CFE457651763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AB511EE-2C5D-420D-B608-CFE457651763}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -133,6 +139,7 @@ Global
 		{FE96C35D-0C18-40EE-9B53-3CD6F05DF3BC} = {6F7020B1-0119-4879-B65B-53B4884B2DAF}
 		{160218F2-D576-42E6-84BD-5A2F7B67EDF0} = {6F7020B1-0119-4879-B65B-53B4884B2DAF}
 		{B64399DD-D7C7-4791-B5C2-980A808BFA1C} = {6F7020B1-0119-4879-B65B-53B4884B2DAF}
+		{2AB511EE-2C5D-420D-B608-CFE457651763} = {6F7020B1-0119-4879-B65B-53B4884B2DAF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75120FCC-77F5-4301-827C-1763B58007BA}
