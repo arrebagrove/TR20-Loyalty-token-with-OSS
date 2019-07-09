@@ -105,7 +105,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(771, 506);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(771, 437);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -233,7 +233,7 @@
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Controls.Add(this.txtRecipient);
             this.groupBox4.Controls.Add(this.label1);
-            this.groupBox4.Location = new System.Drawing.Point(10, 166);
+            this.groupBox4.Location = new System.Drawing.Point(10, 130);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(731, 145);
             this.groupBox4.TabIndex = 4;
@@ -353,7 +353,7 @@
             // 
             // btnApporve
             // 
-            this.btnApporve.Location = new System.Drawing.Point(414, 230);
+            this.btnApporve.Location = new System.Drawing.Point(435, 202);
             this.btnApporve.Name = "btnApporve";
             this.btnApporve.Size = new System.Drawing.Size(215, 41);
             this.btnApporve.TabIndex = 4;
@@ -363,7 +363,7 @@
             // 
             // txtApprovedAmount
             // 
-            this.txtApprovedAmount.Location = new System.Drawing.Point(238, 174);
+            this.txtApprovedAmount.Location = new System.Drawing.Point(259, 146);
             this.txtApprovedAmount.Name = "txtApprovedAmount";
             this.txtApprovedAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtApprovedAmount.Size = new System.Drawing.Size(391, 29);
@@ -372,7 +372,7 @@
             // 
             // txtSpenderAddress
             // 
-            this.txtSpenderAddress.Location = new System.Drawing.Point(238, 85);
+            this.txtSpenderAddress.Location = new System.Drawing.Point(259, 57);
             this.txtSpenderAddress.Name = "txtSpenderAddress";
             this.txtSpenderAddress.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtSpenderAddress.Size = new System.Drawing.Size(391, 29);
@@ -382,7 +382,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(83, 177);
+            this.label3.Location = new System.Drawing.Point(104, 149);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 21);
             this.label3.TabIndex = 0;
@@ -391,7 +391,7 @@
             // lblSpender
             // 
             this.lblSpender.AutoSize = true;
-            this.lblSpender.Location = new System.Drawing.Point(83, 88);
+            this.lblSpender.Location = new System.Drawing.Point(104, 60);
             this.lblSpender.Name = "lblSpender";
             this.lblSpender.Size = new System.Drawing.Size(137, 21);
             this.lblSpender.TabIndex = 0;
@@ -418,7 +418,7 @@
             this.groupBox2.Controls.Add(this.txtcfgUserName);
             this.groupBox2.Controls.Add(this.lblcfgUserName);
             this.groupBox2.Controls.Add(this.lblcfgUserAddress);
-            this.groupBox2.Location = new System.Drawing.Point(28, 200);
+            this.groupBox2.Location = new System.Drawing.Point(28, 148);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(713, 138);
             this.groupBox2.TabIndex = 3;
@@ -496,7 +496,7 @@
             this.groupBox1.Controls.Add(this.txtcfgTokenName);
             this.groupBox1.Controls.Add(this.lblcfgTokenNam);
             this.groupBox1.Controls.Add(this.lblcfgTokenAddress);
-            this.groupBox1.Location = new System.Drawing.Point(28, 29);
+            this.groupBox1.Location = new System.Drawing.Point(28, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(713, 138);
             this.groupBox1.TabIndex = 1;
@@ -574,7 +574,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(771, 506);
+            this.ClientSize = new System.Drawing.Size(771, 437);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
