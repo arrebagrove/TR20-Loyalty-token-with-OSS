@@ -73,8 +73,8 @@ namespace TR20.Loyalty.LedgerClient.Contracts.ExchangeToken
                 exchangeFunction.TargetTokenAddress = targetTokenAddress;
                 exchangeFunction.Exchangerate = exchangerate;
                 exchangeFunction.TokenAmount = tokenAmount;
-            exchangeFunction.Gas = new BigInteger(999999);
-            return ContractHandler.SendRequestAndWaitForReceiptAsync(exchangeFunction, cancellationToken);
+            
+             return ContractHandler.SendRequestAndWaitForReceiptAsync(exchangeFunction, cancellationToken);
         }
 
         public Task<MappingHistoryOutputDTO> MappingHistoryQueryAsync(MappingHistoryFunction mappingHistoryFunction, BlockParameter blockParameter = null)

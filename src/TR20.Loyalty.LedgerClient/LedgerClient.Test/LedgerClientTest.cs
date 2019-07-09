@@ -11,9 +11,7 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
     [TestClass]
     public class LedgerClientTest
     {
-        static string tokenFactoryContractAddress = "0xa82fd99261b16f92f9f7bb7010bb39b6d845603b";
         static string tokenContractAddress = "0xac8bf74f1b51b923507bea339c74b3b18482e3b0"; //JSON
-
         static string applicationAccount = "0xFF1D19EBE9Da2D81Ce5480a2Dab1C1C5faA3e2dD";
         static string user1Account = "0x1F9B9484188b42C01f4aaC308D4848659901F17b";
         static string user2Account = "0x0f5DDacC06A44163badc5eD4f09dE0d3eFfC2716";
@@ -25,7 +23,7 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         {
             Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
             LedgerClientTest.ledgerServiceProxy = new LedgerServiceProxy(
-                "http://localhost:8080",
+                "https://ready20loyalty.azurefd.net",
                 new System.Net.Http.HttpClient()
                 );
         }
@@ -46,23 +44,21 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         [TestMethod]
         public void SetupToken()
         {
-            ERC20Factory factory = new ERC20Factory(
-                "https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
+            ERC20 _erc20 = new ERC20(
+                "https://coe01.blockchain.azure.com:3200/Yo9hBJ7LRpAXDwShDmiu38HR",
                  "0xFF1D19EBE9Da2D81Ce5480a2Dab1C1C5faA3e2dD");
 
-            var txReciept = factory.SetupTokenAsync(LedgerClientTest.tokenFactoryContractAddress,
+            var deployedAddress = _erc20.DeployToken("CAR TOKEN","CAR",
                 1000000000000000,
-                "CAR TOKEN",
-                18,
-                "CAR").GetAwaiter().GetResult();
+                0
+                ).GetAwaiter().GetResult();
 
 
-            var logObj = txReciept.Logs;
+            //var logObj = txReciept.Logs;
 
-            var deployedTokenAddress = logObj.SelectToken("[0].address").ToString();
+            //var deployedTokenAddress = logObj.SelectToken("[0].address").ToString();
 
-            Trace.WriteLine(deployedTokenAddress);
-            Trace.WriteLine(txReciept.Status);
+            Trace.WriteLine(deployedAddress);
         }
 
         //[TestMethod]
@@ -77,48 +73,16 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
 
         //    Assert.IsNotNull(result);
         //}
-
-
-
-
-        [TestMethod]
-        public void CheckEIP20()
-        {
-            ERC20Factory factory = new ERC20Factory(
-           "https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
-            applicationAccount);
-
-            var result = factory.CheckEIP20(LedgerClientTest.tokenFactoryContractAddress, LedgerClientTest.tokenContractAddress).GetAwaiter().GetResult();
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        public void IsEIP20()
-        {
-            ERC20Factory factory = new ERC20Factory(
-           "https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
-            applicationAccount);
-
-            var result = factory.IsEIP20(LedgerClientTest.tokenFactoryContractAddress, LedgerClientTest.tokenContractAddress).GetAwaiter().GetResult();
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        public void IsEIP20_WebAPI()
-        {
-            var result = LedgerClientTest.ledgerServiceProxy.IsERP20Async(LedgerClientTest.tokenFactoryContractAddress, LedgerClientTest.tokenContractAddress).GetAwaiter().GetResult();
-            Assert.IsTrue(result);
-        }
+    
 
         [TestMethod]
         public void GetTokenInfo()
         {
             ERC20 eRC20 = new ERC20(
-           "https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
-           LedgerClientTest.tokenContractAddress,
+           "https://coe01.blockchain.azure.com:3200/Yo9hBJ7LRpAXDwShDmiu38HR",
             applicationAccount);
 
-            var result = eRC20.GetTokenInfoAsync().GetAwaiter().GetResult();
+            var result = eRC20.GetTokenInfoAsync(LedgerClientTest.tokenContractAddress).GetAwaiter().GetResult();
 
             Assert.IsNotNull(result);
         }
@@ -126,8 +90,7 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         [TestMethod]
         public void GetTokenInfo_WebAPI()
         {
-
-            var result = LedgerClientTest.ledgerServiceProxy.GetTokenInfoAsync(LedgerClientTest.tokenContractAddress).GetAwaiter().GetResult();
+            var result = LedgerClientTest.ledgerServiceProxy.GetTokenInfoAsync("0x4633bb99d47740579ec9f5b0b5a0e65da25db7c0").GetAwaiter().GetResult();
             Assert.IsNotNull(result);
         }
 
@@ -135,11 +98,11 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         public void GetBalance()
         {
             ERC20 eRC20 = new ERC20(
-           "https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
-           LedgerClientTest.tokenContractAddress,
+           "https://coe01.blockchain.azure.com:3200/Yo9hBJ7LRpAXDwShDmiu38HR",
+           
             applicationAccount);
 
-            var result = eRC20.GetBalanceAsync(applicationAccount).GetAwaiter().GetResult();
+            var result = eRC20.GetBalanceAsync(LedgerClientTest.tokenContractAddress,applicationAccount).GetAwaiter().GetResult();
 
             Assert.IsTrue(result > 0);
         }
@@ -156,12 +119,12 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         public void Transfer()
         {
             ERC20Service eRC20 = new ERC20Service(
-                      "https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
-                      LedgerClientTest.tokenContractAddress,
+                      "https://coe01.blockchain.azure.com:3200/Yo9hBJ7LRpAXDwShDmiu38HR",
+                    
                        applicationAccount);
 
-            var result = eRC20.TransferAsync(user1Account, 1).GetAwaiter().GetResult();
-            var balance = eRC20.GetBalanceAsync(user1Account).GetAwaiter().GetResult();
+            var result = eRC20.TransferAsync(  LedgerClientTest.tokenContractAddress,user1Account, 1).GetAwaiter().GetResult();
+            var balance = eRC20.GetBalanceAsync(LedgerClientTest.tokenContractAddress, user1Account).GetAwaiter().GetResult();
 
             Assert.IsTrue(balance > 0);
             Assert.IsNotNull(result);
@@ -171,7 +134,7 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         public void Transfer_WebAPI()
         {
             //ERC20 eRC20 = new ERC20(
-            //          "https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
+            //          "https://coe01.blockchain.azure.com:3200/Yo9hBJ7LRpAXDwShDmiu38HR",
             //          LedgerClientTest.tokenContractAddress,
             //           applicationAccount);
 
@@ -191,11 +154,11 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         public void Approve()
         {
             ERC20 eRC20 = new ERC20(
-                                 "https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
-                                 LedgerClientTest.tokenContractAddress,
+                                 "https://coe01.blockchain.azure.com:3200/Yo9hBJ7LRpAXDwShDmiu38HR",
+                                 
                                   user1Account);
 
-            var result = eRC20.ApproveAsync(applicationAccount, 10000).GetAwaiter().GetResult();
+            var result = eRC20.ApproveAsync(LedgerClientTest.tokenContractAddress,applicationAccount, 10000).GetAwaiter().GetResult();
 
             Assert.IsNotNull(result);
         }
@@ -204,10 +167,10 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         public void Allowance()
         {
             ERC20 eRC20 = new ERC20(
-                                 "https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
-                                 LedgerClientTest.tokenContractAddress,
+                                 "https://coe01.blockchain.azure.com:3200/Yo9hBJ7LRpAXDwShDmiu38HR",
+                                
                                   applicationAccount);
-            var allowedMoney = eRC20.AllowanceAsync(applicationAccount, user1Account).GetAwaiter().GetResult();
+            var allowedMoney = eRC20.AllowanceAsync( LedgerClientTest.tokenContractAddress,applicationAccount, user1Account).GetAwaiter().GetResult();
 
             Assert.IsTrue(allowedMoney > 0);
         }
@@ -216,13 +179,13 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         public void Transferfrom()
         {
             ERC20 eRC20 = new ERC20(
-                      "https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
-                      LedgerClientTest.tokenContractAddress,
+                      "https://coe01.blockchain.azure.com:3200/Yo9hBJ7LRpAXDwShDmiu38HR",
+                     
                        applicationAccount);
 
-            var result = eRC20.TransferFromAsync(user1Account, user2Account, 1).GetAwaiter().GetResult();
-            var balance_user2 = eRC20.GetBalanceAsync(user2Account).GetAwaiter().GetResult();
-            var balance_user1 = eRC20.GetBalanceAsync(user1Account).GetAwaiter().GetResult();
+            var result = eRC20.TransferFromAsync( LedgerClientTest.tokenContractAddress,user1Account, user2Account, 1).GetAwaiter().GetResult();
+            var balance_user2 = eRC20.GetBalanceAsync(LedgerClientTest.tokenContractAddress, user2Account).GetAwaiter().GetResult();
+            var balance_user1 = eRC20.GetBalanceAsync(LedgerClientTest.tokenContractAddress, user1Account).GetAwaiter().GetResult();
 
             Assert.IsTrue(balance_user1 > 0);
             Assert.IsTrue(balance_user2 > 0);
@@ -232,7 +195,7 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         [TestMethod]
         public void DeployRewardContract()
         {
-            TokenRewarder rewarder = new TokenRewarder("https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
+            TokenRewarder rewarder = new TokenRewarder("https://coe01.blockchain.azure.com:3200/Yo9hBJ7LRpAXDwShDmiu38HR",
                        "0x0071df3755926F5C38b4cb68d550807db74DcbAc"); //airline
             var txReciept = rewarder.DeployContractAsync("ReadyAir", "0x505d2370e8e2afcd65869fda07dcd081fe2d0c03").GetAwaiter().GetResult();
             var deployedAddress = txReciept.ContractAddress;
@@ -244,7 +207,7 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         [TestMethod]
         public void ReadInfosFromContract()
         {
-            TokenRewarder rewarder = new TokenRewarder("https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
+            TokenRewarder rewarder = new TokenRewarder("https://coe01.blockchain.azure.com:3200/Yo9hBJ7LRpAXDwShDmiu38HR",
                      "0x0071df3755926F5C38b4cb68d550807db74DcbAc"); //airline
             var info = rewarder.GetContractInformation("0xf10e562e12569e313d300765bab04b14aed7ba16").GetAwaiter().GetResult();
 
@@ -254,7 +217,7 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         [TestMethod]
         public void SendRewardToken()
         {
-            TokenRewarder rewarder = new TokenRewarder("https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
+            TokenRewarder rewarder = new TokenRewarder("https://coe01.blockchain.azure.com:3200/Yo9hBJ7LRpAXDwShDmiu38HR",
                        "0x0071df3755926F5C38b4cb68d550807db74DcbAc"); //airline
 
             var txRecipt =  rewarder.SendRewardTokenAsync("0xf10e562e12569e313d300765bab04b14aed7ba16",
@@ -266,7 +229,7 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         [TestMethod]
         public void DeployExchangeTokenContract()
         {
-            ExchangeToken exchangeToken = new ExchangeToken("https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
+            ExchangeToken exchangeToken = new ExchangeToken("https://coe01.blockchain.azure.com:3200/Yo9hBJ7LRpAXDwShDmiu38HR",
                        LedgerClientTest.applicationAccount); //application
 
             var txReceipt = exchangeToken.DeployContractAsync().GetAwaiter().GetResult();
@@ -277,7 +240,7 @@ namespace TR20.Loyalty.LedgerClient.LedgerClient.Test
         [TestMethod]
         public void ExchangeTokens()
         {
-            ExchangeToken exchangeToken = new ExchangeToken("https://coe01.blockchain.azure.com:3200/Mi8hWUljBk9zrXxH0dq0Cpmt",
+            ExchangeToken exchangeToken = new ExchangeToken("https://coe01.blockchain.azure.com:3200/Yo9hBJ7LRpAXDwShDmiu38HR",
                        LedgerClientTest.applicationAccount); //application
 
             var txRecipt = exchangeToken.ExchangeTokens(

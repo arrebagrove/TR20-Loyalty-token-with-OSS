@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MileageTokenService.Properties {
+namespace TokenWallet.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.1.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,29 +25,25 @@ namespace MileageTokenService.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"
-                  [
-                  {
-                  ""Name"": ""Contoso Airline"",
-                  ""ContractAddress"": ""0xbf18537886acee06c35e533312c8f989d4ccfb85"",
-                  ""Address"": ""0x0071df3755926F5C38b4cb68d550807db74DcbAc"",
-                  ""TokenAddress"": """"
-                  }
-                  ,
-                  {
-                  ""Name"": ""Contoso Rent a Car"",
-                  ""ContractAddress"": ""0xe6482a8752d2caecd2de997e06e0b9f562c4fbc2"",
-                  ""Address"": ""0xB897f342D673fB16C38D8Ca4e31F39EE727720A1"",
-                  ""TokenAddress"": """"
-                  }
-
-                  ]")]
-        public string CompanyInfo {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TokenInfos {
             get {
-                return ((string)(this["CompanyInfo"]));
+                return ((string)(this["TokenInfos"]));
             }
             set {
-                this["CompanyInfo"] = value;
+                this["TokenInfos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AccountInfos {
+            get {
+                return ((string)(this["AccountInfos"]));
+            }
+            set {
+                this["AccountInfos"] = value;
             }
         }
         

@@ -7,19 +7,22 @@
                   [
                   {
                   "Name": "Contoso Airline",
-                  "ContractAddress": "",
+                  "ContractAddress": "0xbf18537886acee06c35e533312c8f989d4ccfb85",
                   "Address": "0x0071df3755926F5C38b4cb68d550807db74DcbAc",
                   "TokenAddress": ""
                   }
                   ,
                   {
                   "Name": "Contoso Rent a Car",
-                  "ContractAddress": "",
+                  "ContractAddress": "0xe6482a8752d2caecd2de997e06e0b9f562c4fbc2",
                   "Address": "0xB897f342D673fB16C38D8Ca4e31F39EE727720A1",
                   "TokenAddress": ""
                   }
 
                   ]</Value>
+    </Setting>
+    <Setting Name="APILocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://ready20loyalty.azurefd.net</Value>
     </Setting>
   </Settings>
 </SettingsFile>

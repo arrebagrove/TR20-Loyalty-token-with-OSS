@@ -6,7 +6,7 @@ namespace TxTracker.Test
     [TestClass]
     public class TransactionTrackerTest
     {
-        static string mongoConnection = "mongodb://mongoloyalty:tlayMnZYEGwrhduOH2MYlDnaUSZ7HDdajN8GgvdQausiPxRrahHWrLVMhVwMRvaIiy74aa5T43KRR2VxubEBGw==@mongoloyalty.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
+        static string mongoConnection = "mongodb://mongoloyalty:t51hIYsmmBBEuunr72YJrThgOP7VwtYT09lTcr581TISc7vr6ToOBRc6AMgnpwxGUjuckKkLoTW7okZ8eMQeKA==@mongoloyalty.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
 
 
         [TestMethod]

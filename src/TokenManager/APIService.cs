@@ -20,7 +20,6 @@ namespace TokenManager
         public async Task<TokenInfo> CreateTokenAsync(double totalAmountToken, string tokenName, int decimalDigit, string symbol)
         {
            return  await this.proxyClient.CreateERC20TokenAsync(
-                TokenManager.Properties.Settings.Default.TokenFactoryAddress,
                 totalAmountToken,
                 tokenName,
                 decimalDigit,

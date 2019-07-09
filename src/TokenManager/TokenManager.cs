@@ -12,9 +12,9 @@ using System.Windows.Forms;
 using TR20.Loyalty.API;
 namespace TokenManager
 {
-    public partial class Form1 : Form
+    public partial class TokenManager : Form
     {
-        public Form1()
+        public TokenManager()
         {
             InitializeComponent();
             this.Text = "ERC20 Token Manager";
@@ -24,13 +24,13 @@ namespace TokenManager
 
         private async void btnCreateToken_Click(object sender, EventArgs e)
         {
-            string apiLocation = TokenManager.Properties.Settings.Default.APILocation;
+            string apiLocation = global::TokenManager.Properties.Settings.Default.APILocation;
             APIService svc = new APIService(apiLocation);
 
             var tokenInfo = await svc.CreateTokenAsync(double.Parse(txtAmount.Text), txtTokenName.Text, int.Parse(txtDecimal.Text), txtSymbol.Text);
             txtTokenAddress.Text = tokenInfo.ContractAddress;
 
-            string serializedString = TokenManager.Properties.Settings.Default["TokenInfos"] as string;
+            string serializedString = global::TokenManager.Properties.Settings.Default["TokenInfos"] as string;
 
             List<TokenInfo> tokenInfos = null;
 
@@ -47,8 +47,8 @@ namespace TokenManager
 
 
             //TokenManager.Properties.Settings.Default.
-            TokenManager.Properties.Settings.Default["TokenInfos"] = JsonConvert.SerializeObject(tokenInfos);
-            TokenManager.Properties.Settings.Default.Save();
+            global::TokenManager.Properties.Settings.Default["TokenInfos"] = JsonConvert.SerializeObject(tokenInfos);
+            global::TokenManager.Properties.Settings.Default.Save();
 
         }
 
@@ -56,7 +56,7 @@ namespace TokenManager
         {
             if ((sender as TabControl).SelectedIndex == 1)
             {
-                string serializedString = TokenManager.Properties.Settings.Default["TokenInfos"] as string;
+                string serializedString = global::TokenManager.Properties.Settings.Default["TokenInfos"] as string;
                 if (!string.IsNullOrEmpty(serializedString))
                 {
                     var tokenInfos = JsonConvert.DeserializeObject<List<TokenInfo>>(serializedString);

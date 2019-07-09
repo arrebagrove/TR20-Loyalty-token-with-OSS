@@ -42,28 +42,15 @@ namespace TR20.Loyalty.APIService.Controllers
 
         [HttpPost]
         [Route("CreateERC20Token")]
-        public async Task<ActionResult<LedgerClient.Proxy.TokenInfo>> CreateERC20Token(string tokenFactoryContractAddress, double TotalAmountToken,
+        public async Task<ActionResult<LedgerClient.Proxy.TokenInfo>> CreateERC20Token(double TotalAmountToken,
                                                         string Name,
                                                         int Decimal,
                                                         string Symbol)
         {
-            return await _proxyFactory.CreateLedgerProxy().SetupTokenAsync(tokenFactoryContractAddress, TotalAmountToken, Name, Decimal, Symbol);
+            return await _proxyFactory.CreateLedgerProxy().SetupTokenAsync(TotalAmountToken.ToString(), Name, Decimal, Symbol);
         }
 
-        [HttpPost]
-        [Route("CreateERC20TokenFactory")]
-        public async Task<ActionResult<string>> CreateERC20TokenFactory()
-        {
-            return await _proxyFactory.CreateLedgerProxy().DeployESC20TokenFactoryContractAsync();
-        }
-
-        [HttpPost]
-        [Route("IsERP20")]
-        public async Task<ActionResult<bool>> IsERP20(string tokenFactoryContractAddress, string tokenContractAddress)
-        {
-            return await _proxyFactory.CreateLedgerProxy().IsERP20Async(tokenFactoryContractAddress, tokenContractAddress);
-        }
-
+     
         [HttpPost]
         [Route("GetBalance")]
         public async Task<ActionResult<string>> GetBalance(string tokenContractAddress, string account)

@@ -26,61 +26,46 @@ namespace TR20.Loyalty.LedgerClient.Host.Controllers
         }
 
         [HttpPost]
-        [Route("DeployESC20TokenFactoryContract")]
-        public async Task<ActionResult<string>> DeployESC20TokenFactoryContract()
-        {
-            return await ERC20FactoryService.DeployESC20FactoryContract(this.HTTPRPCEndpoint, this.APPAccount);
-        }
-
-        [HttpPost]
-        [Route("IsERP20")]
-        public async Task<ActionResult<bool>> IsERP20(string tokenFactoryContractAddress, string tokenContractAddress)
-        {
-            ERC20FactoryService erc20FactoryService = new ERC20FactoryService(this.HTTPRPCEndpoint, tokenContractAddress, this.APPAccount);
-            return await erc20FactoryService.IsERP20Async(tokenFactoryContractAddress, tokenContractAddress);
-        }
-
-        [HttpPost]
         [Route("SetupToken")]
-        public async Task<ActionResult<TokenInfo>> SetupToken(string tokenFactoryContractAddress, Decimal TotalAmountToken,
+        public async Task<ActionResult<TokenInfo>> SetupToken(BigInteger TotalAmountToken,
                                                         string Name,
                                                         byte Decimal,
                                                         string Symbol)
         {
-            ERC20FactoryService erc20FactoryService = new ERC20FactoryService(this.HTTPRPCEndpoint, tokenFactoryContractAddress, this.APPAccount);
-            return await erc20FactoryService.SetupTokenAsync(tokenFactoryContractAddress, new BigInteger(TotalAmountToken), Name, Decimal, Symbol);
+            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, this.APPAccount);
+            return await erc20Service.DeployERC20Contract(Name, Symbol, TotalAmountToken, Decimal);
         }
 
         [HttpPost]
         [Route("GetBalance")]
         public async Task<ActionResult<BigInteger>> GetBalance(string tokenContractAddress, string account)
         {
-            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, this.APPAccount);
-            return await erc20Service.GetBalanceAsync(account);
+            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, this.APPAccount);
+            return await erc20Service.GetBalanceAsync(tokenContractAddress, account);
         }
 
         [HttpPost]
         [Route("TransferFrom")]
         public async Task<ActionResult<bool>> TransferFrom(string tokenContractAddress, string loginAccountAddress, string senderAddress, string recepientAddress, Decimal amount)
         {
-            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, loginAccountAddress);
-            return await erc20Service.TransferFromAsync(senderAddress, recepientAddress, new BigInteger(amount));
+            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, loginAccountAddress);
+            return await erc20Service.TransferFromAsync(tokenContractAddress, senderAddress, recepientAddress, new BigInteger(amount));
         }
 
         [HttpPost]
         [Route("Transfer")]
         public async Task<ActionResult<bool>> Transfer(string tokenContractAddress, string loginAccountAddress, string recepientAddress, Decimal amount)
         {
-            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, loginAccountAddress);
-            return await erc20Service.TransferAsync(recepientAddress, new BigInteger(amount));
+            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, loginAccountAddress);
+            return await erc20Service.TransferAsync(tokenContractAddress, recepientAddress, new BigInteger(amount));
         }
 
         [HttpPost]
         [Route("Approve")]
         public async Task<ActionResult<bool>> Approve(string tokenContractAddress, string loginAccountAddress, string spenderAccress, Decimal amount)
         {
-            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, loginAccountAddress);
-            return await erc20Service.ApproveAsync(spenderAccress, new BigInteger(amount));
+            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, loginAccountAddress);
+            return await erc20Service.ApproveAsync(tokenContractAddress, spenderAccress, new BigInteger(amount));
         }
 
 
@@ -88,8 +73,8 @@ namespace TR20.Loyalty.LedgerClient.Host.Controllers
         [Route("GetTokenInfo")]
         public async Task<ActionResult<TokenInfo>> GetTokenInfo(string tokenContractAddress)
         {
-            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, tokenContractAddress, this.APPAccount);
-            return await erc20Service.GetTokenInfoAsync();
+            ERC20Service erc20Service = new ERC20Service(this.HTTPRPCEndpoint, this.APPAccount);
+            return await erc20Service.GetTokenInfoAsync(tokenContractAddress);
         }
 
         [HttpPost]

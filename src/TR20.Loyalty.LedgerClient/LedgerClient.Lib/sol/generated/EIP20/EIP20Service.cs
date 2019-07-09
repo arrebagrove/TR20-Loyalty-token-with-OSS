@@ -11,7 +11,6 @@ using Nethereum.Contracts.ContractHandlers;
 using Nethereum.Contracts;
 using System.Threading;
 
-
 namespace TR20.Loyalty.LedgerClient.Contracts.EIP20
 {
     public partial class EIP20Service
@@ -118,8 +117,7 @@ namespace TR20.Loyalty.LedgerClient.Contracts.EIP20
                 transferFromFunction.From = from;
                 transferFromFunction.To = to;
                 transferFromFunction.Value = value;
-            transferFromFunction.Gas = new BigInteger(999999);
-
+            
              return ContractHandler.SendRequestAndWaitForReceiptAsync(transferFromFunction, cancellationToken);
         }
 

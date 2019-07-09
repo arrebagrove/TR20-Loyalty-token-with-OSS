@@ -9,53 +9,63 @@ namespace TR20.Loyalty.LedgerClient.Lib
 {
     public class ERC20 : LedgerClientBase
     {
-        string tokenAddress = "";
-
-        public ERC20(string connectionString,string tokenAddress, string address): base(connectionString, address)
+        public ERC20(string connectionString, string address): base(connectionString, address)
         {
-            this.tokenAddress = tokenAddress;
+
         }
 
-        public async Task<BigInteger> GetBalanceAsync(string address)
+        public async Task<string> DeployToken(string tokenName, string tokenSymbol, BigInteger initialAmount, byte decimalUnit)
         {
-            var erc20Service = new Contracts.EIP20.EIP20Service(this.web3, this.tokenAddress);
+            return (await Contracts.EIP20.EIP20Service.DeployContractAndWaitForReceiptAsync(web3, 
+                new Contracts.EIP20.EIP20Deployment() {
+                    TokenName = tokenName,
+                    DecimalUnits = decimalUnit ,
+                    TokenSymbol =  tokenSymbol,
+                    InitialAmount = initialAmount
+                })).ContractAddress;
+        }
+
+
+        public async Task<BigInteger> GetBalanceAsync(string tokenContractAddress, string address)
+        {
+            var erc20Service = new Contracts.EIP20.EIP20Service(this.web3, tokenContractAddress);
             return await erc20Service.BalanceOfQueryAsync(address);
         }
 
-        public async Task<TransactionReceipt> TransferFromAsync(string senderAddress, string recepientAddress, BigInteger amount)
+        public async Task<TransactionReceipt> TransferFromAsync(string tokenContractAddress, string senderAddress, string recepientAddress, BigInteger amount)
         {
-            var erc20Service = new Contracts.EIP20.EIP20Service(this.web3, this.tokenAddress);
+            var erc20Service = new Contracts.EIP20.EIP20Service(this.web3, tokenContractAddress);
             return await erc20Service.TransferFromRequestAndWaitForReceiptAsync(senderAddress, recepientAddress, amount);
         }
 
-        public async Task<TransactionReceipt> TransferAsync(string recepientAddress, BigInteger amount)
+        public async Task<TransactionReceipt> TransferAsync(string tokenContractAddress, string recepientAddress, BigInteger amount)
         {
-            var erc20Service = new Contracts.EIP20.EIP20Service(this.web3, this.tokenAddress);
+            var erc20Service = new Contracts.EIP20.EIP20Service(this.web3, tokenContractAddress);
             return await erc20Service.TransferRequestAndWaitForReceiptAsync(recepientAddress, amount);
         }
 
       
-        public async Task<TransactionReceipt> ApproveAsync(string spenderAddress, BigInteger amount)
+        public async Task<TransactionReceipt> ApproveAsync(string tokenContractAddress, string spenderAddress, BigInteger amount)
         {
-            var erc20Service = new Contracts.EIP20.EIP20Service(this.web3, this.tokenAddress);
+            var erc20Service = new Contracts.EIP20.EIP20Service(this.web3, tokenContractAddress);
             return await erc20Service.ApproveRequestAndWaitForReceiptAsync(spenderAddress, amount);
         }
 
-        public async Task<BigInteger> AllowanceAsync(string ownerAddress, string spenderAddress)
+        public async Task<BigInteger> AllowanceAsync(string tokenContractAddress, string ownerAddress, string spenderAddress)
         {
-            var erc20Service = new Contracts.EIP20.EIP20Service(this.web3, this.tokenAddress);
+            var erc20Service = new Contracts.EIP20.EIP20Service(this.web3, tokenContractAddress);
             return await erc20Service.AllowanceQueryAsync(ownerAddress, spenderAddress);
         }
 
-        public async Task<TokenInfo> GetTokenInfoAsync()
+        public async Task<TokenInfo> GetTokenInfoAsync(string tokenContractAddress)
         {
-            var erc20Service = new Contracts.EIP20.EIP20Service(this.web3, this.tokenAddress);
+            var erc20Service = new Contracts.EIP20.EIP20Service(this.web3, tokenContractAddress);
             return new TokenInfo()
             {
                 Name = await erc20Service.NameQueryAsync(),
                 Symbol = await erc20Service.SymbolQueryAsync(),
                 TotalSupplied = await erc20Service.TotalSupplyQueryAsync(),
-                ContractAddress = this.tokenAddress
+                ContractAddress = tokenContractAddress
             };
         }
     }

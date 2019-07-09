@@ -1,6 +1,6 @@
 ﻿namespace TokenManager
 {
-    partial class Form1
+    partial class TokenManager
     {
         /// <summary>
         /// Required designer variable.

@@ -77,7 +77,6 @@ namespace TR20.Loyalty.LedgerClient.Contracts.TokenRewarder
             var sendRewardTokenFunction = new SendRewardTokenFunction();
                 sendRewardTokenFunction.Recipient = recipient;
                 sendRewardTokenFunction.Amount = amount;
-            sendRewardTokenFunction.Gas = new BigInteger(999999);
             
              return ContractHandler.SendRequestAndWaitForReceiptAsync(sendRewardTokenFunction, cancellationToken);
         }

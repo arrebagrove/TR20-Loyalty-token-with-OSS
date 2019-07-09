@@ -14,7 +14,6 @@ namespace TR20.Loyalty.LedgerClient.Lib
     {
         private string HttpRPCEndpoint;
         private string account;
-        private string tokenContractAddress;
         private Indexer.IndexerServiceProxy indexerProxy;
 
         public ExchangeTokenService(string httpRPCEndpoint,  string account)

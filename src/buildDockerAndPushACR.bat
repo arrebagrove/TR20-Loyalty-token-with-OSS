@@ -30,7 +30,7 @@ docker tag tr20loyalty/txindexer:latest tr20loyalty.azurecr.io/tr20loyalty/txind
 docker tag tr20loyalty/txtracker:latest tr20loyalty.azurecr.io/tr20loyalty/txtracker:latest
 docker tag tr20loyalty/serviceapi:latest tr20loyalty.azurecr.io/tr20loyalty/serviceapi:latest
 
-docker login tr20loyalty.azurecr.io -u tr20loyalty -p 1JrZYh2wKzIb5VcBtHGJ=qhmKrZ7bZYC
+docker login tr20loyalty.azurecr.io -u tr20loyalty -p BmQN3OQys8khFD31WWwV+mxOJgfcwxTa
 
 docker push tr20loyalty.azurecr.io/tr20loyalty/ledgerclient:latest
 docker push tr20loyalty.azurecr.io/tr20loyalty/txindexer:latest
