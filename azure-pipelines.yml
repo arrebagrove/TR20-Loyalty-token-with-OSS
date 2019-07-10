@@ -15,7 +15,7 @@ variables:
 steps:
 - task: PowerShell@2
   inputs:
-    filePath: 'src\buildDockerAndPushACR.bat'
+    filePath: '.\\src\\buildDockerAndPushACR.bat'
 
 
 
