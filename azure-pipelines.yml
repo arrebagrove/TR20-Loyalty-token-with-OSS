@@ -8,15 +8,15 @@ trigger:
 - master
 
 pool:
-  vmImage: 'vs2017-win2016'
-
-variables:
-  buildConfiguration: 'Release'
+  vmImage: 'ubuntu-16.04'
 
 steps:
-- task: BatchScript@1
+- task: DotNetCoreCLI@2
+  displayName: Build
   inputs:
-    filename: '.\\src\\buildDockerAndPushACR.bat'
+    command: build
+    projects: '**/*.csproj'
+    
 
 
 
