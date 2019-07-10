@@ -7,13 +7,15 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'vs2017-win2016'
 
 variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: 
-  cd TR20.Loyalty.ServiceProxy
-  dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+- task: PowerShell@2
+  inputs:
+    filePath: 'src\buildDockerAndPushACR.bat'
+
+
+
