@@ -15,7 +15,7 @@ steps:
   displayName: Build
   inputs:
     command: build
-    projects: '**/*.csproj'
+    projects: './src/TR20.Loyalty.ServiceProxy/*.csproj'
     
 
 
