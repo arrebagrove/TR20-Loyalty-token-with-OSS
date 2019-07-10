@@ -13,8 +13,8 @@ pool:
 steps:
     - task: BatchScript@1
       inputs:
-        filename: 'buildDockerAndPushACR.bat'
-        workingFolder: '../src/'
+        filename: './src/buildDockerAndPushACR.bat'
+
 
 
 
