@@ -11,12 +11,10 @@ pool:
   vmImage: 'vs2017-win2016'
 
 steps:
-- task: DotNetCoreCLI@2
-  displayName: Build
-  inputs:
-    command: build
-    projects: './src/TR20.Loyalty.ServiceProxy/*.csproj'
-    
+    - task: BatchScript@1
+      inputs:
+        filename: 'buildDockerAndPushACR.bat'
+        workingFolder: '..//src//'
 
 
 
