@@ -110,23 +110,22 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.txtTokenAddress);
             this.panel1.Controls.Add(this.cboToken);
             this.panel1.Controls.Add(this.lblTokenName);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(5, 5);
             this.panel1.Margin = new System.Windows.Forms.Padding(5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1323, 42);
+            this.panel1.Size = new System.Drawing.Size(766, 42);
             this.panel1.TabIndex = 0;
             // 
             // txtTokenAddress
             // 
-            this.txtTokenAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTokenAddress.Location = new System.Drawing.Point(343, 7);
             this.txtTokenAddress.Name = "txtTokenAddress";
-            this.txtTokenAddress.ReadOnly = true;
             this.txtTokenAddress.Size = new System.Drawing.Size(402, 29);
             this.txtTokenAddress.TabIndex = 2;
             this.txtTokenAddress.TabStop = false;
@@ -151,20 +150,20 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.txtUserAccount);
             this.panel2.Controls.Add(this.cboUser);
             this.panel2.Controls.Add(this.lblUser);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(5, 57);
             this.panel2.Margin = new System.Windows.Forms.Padding(5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1323, 42);
+            this.panel2.Size = new System.Drawing.Size(766, 42);
             this.panel2.TabIndex = 1;
             // 
             // txtUserAccount
             // 
-            this.txtUserAccount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUserAccount.Location = new System.Drawing.Point(343, 7);
             this.txtUserAccount.Name = "txtUserAccount";
             this.txtUserAccount.ReadOnly = true;
@@ -192,12 +191,14 @@
             // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.Controls.Add(this.tblWallet);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(5, 109);
             this.panel3.Margin = new System.Windows.Forms.Padding(5);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1323, 491);
+            this.panel3.Size = new System.Drawing.Size(766, 328);
             this.panel3.TabIndex = 2;
             // 
             // tblWallet
@@ -209,7 +210,7 @@
             this.tblWallet.Location = new System.Drawing.Point(0, 0);
             this.tblWallet.Name = "tblWallet";
             this.tblWallet.SelectedIndex = 0;
-            this.tblWallet.Size = new System.Drawing.Size(1323, 491);
+            this.tblWallet.Size = new System.Drawing.Size(766, 328);
             this.tblWallet.TabIndex = 0;
             this.tblWallet.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -217,11 +218,10 @@
             // 
             this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Controls.Add(this.lblSymbol);
             this.tabPage1.Location = new System.Drawing.Point(4, 30);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1315, 457);
+            this.tabPage1.Size = new System.Drawing.Size(758, 294);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Wallet (Balance)";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -290,6 +290,7 @@
             // 
             this.groupBox3.Controls.Add(this.txtBalance);
             this.groupBox3.Controls.Add(this.chkMonitor);
+            this.groupBox3.Controls.Add(this.lblSymbol);
             this.groupBox3.Controls.Add(this.lblBalance);
             this.groupBox3.Location = new System.Drawing.Point(10, 24);
             this.groupBox3.Name = "groupBox3";
@@ -311,7 +312,7 @@
             // chkMonitor
             // 
             this.chkMonitor.AutoSize = true;
-            this.chkMonitor.Location = new System.Drawing.Point(413, 45);
+            this.chkMonitor.Location = new System.Drawing.Point(448, 43);
             this.chkMonitor.Name = "chkMonitor";
             this.chkMonitor.Size = new System.Drawing.Size(184, 25);
             this.chkMonitor.TabIndex = 3;
@@ -331,10 +332,11 @@
             // lblSymbol
             // 
             this.lblSymbol.AutoSize = true;
-            this.lblSymbol.Location = new System.Drawing.Point(341, 24);
+            this.lblSymbol.Location = new System.Drawing.Point(374, 43);
             this.lblSymbol.Name = "lblSymbol";
-            this.lblSymbol.Size = new System.Drawing.Size(0, 21);
+            this.lblSymbol.Size = new System.Drawing.Size(68, 21);
             this.lblSymbol.TabIndex = 2;
+            this.lblSymbol.Text = "Symbol";
             // 
             // tabPage3
             // 
@@ -588,7 +590,6 @@
             this.panel3.ResumeLayout(false);
             this.tblWallet.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
